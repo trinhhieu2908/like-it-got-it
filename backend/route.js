@@ -5,9 +5,9 @@ const home = require('./controller/home');
 const app = express()
 //var upload = multer()
 
-//const appBundle = fs.readFileSync("./frontend/build/index.html", "utf8");
+// const appBundle = fs.readFileSync("../frontend/public/index.html", "utf8");
 
-//app.use('/', express.static("frontend/build"));
+// app.use('/', express.static("frontend/public"));
 app.use(express.json());
 
 // app.get('/', function(req, res) {
