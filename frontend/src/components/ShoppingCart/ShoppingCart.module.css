@@ -1,0 +1,49 @@
+.shoppingCart {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 10;
+}
+
+.shoppingCart a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.shoppingCart a:hover {
+  color: #f1f1f1;
+}
+
+.shoppingCart .closeCartBtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+  color: rgb(112, 112, 112);
+}
+
+.shoppingCart .closeCartBtn:hover {
+  color: rgb(0, 0, 0);
+}
+
+@media screen and (max-height: 450px) {
+  .shoppingCart {
+    padding-top: 15px;
+  }
+  .shoppingCart a {
+    font-size: 18px;
+  }
+}

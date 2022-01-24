@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 const Home = () => {
-  const [homepageData, setHomepageData] = useState({});
+  // const [homepageData, setHomepageData] = useState({});
 
-  const fetchHomepageData = async () => {
-    try {
-      const response = await fetch("/home", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await response.json();
-      setHomepageData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const fetchHomepageData = async () => {
+  //   try {
+  //     const response = await fetch("/home", {
+  //       method: "GET",
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     const data = await response.json();
+  //     setHomepageData(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchHomepageData();
-  }, []);
+  // useEffect(() => {
+  //   fetchHomepageData();
+  // }, []);
 
-  console.log(homepageData);
+  // console.log(homepageData);
 
   return (
     <div className="container">
       <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        {homepageData.data}
+        HomePage
       </h1>
       <p className="text-left">
         Home Home Home Home Home Home Home Home Home Home Home Home Home Home
@@ -48,8 +48,7 @@ const Home = () => {
       </h1>
       <h1 className="text-center" style={{ paddingTop: "30%" }}>
         Home
-      </h1>
-      <p className="text-left">Home</p>
+      </h1>      
     </div>
   );
 };

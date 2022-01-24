@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import styles from "./Navbar.module.css";
 import $ from "jquery";
 
-import PageOption from './PageOption'
-import SidebarPageOption from './SidebarPageOption'
-import ButtonOption from './ButtonOption'
-import NavLogo from "./NavLogo"
+import PageOption from "./PageOption";
+import ButtonOption from "./ButtonOption";
+import NavLogo from "./NavLogo";
+import SearchProduct from "../SearchProduct/SearchProduct";
 
 const Navbar = () => {
   function animation() {
@@ -37,18 +37,6 @@ const Navbar = () => {
     });
   }
 
-  function openSidebarPageOption() {
-    document.getElementById("mySidebarPageOption").style.width = "50%";
-    document.getElementById("main").style.marginLeft = "50%";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  }
-
-  function closeSidebarPageOption() {
-    document.getElementById("mySidebarPageOption").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    document.body.style.backgroundColor = "white";
-  }
-
   useEffect(() => {
     animation();
     $(window).on("resize", function () {
@@ -59,8 +47,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <React.Fragment>  
-      <SidebarPageOption onClose={closeSidebarPageOption}/>
+    <React.Fragment>
       <nav
         className={`navbar navbar-expand-lg ${styles["navbar-mainBackGround"]}`}
       >
@@ -76,8 +63,9 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <ButtonOption onOpenSidebar={openSidebarPageOption}/>
+        <ButtonOption />
       </nav>
+      <SearchProduct />
     </React.Fragment>
   );
 };
