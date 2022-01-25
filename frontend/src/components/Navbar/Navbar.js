@@ -20,22 +20,16 @@ const Navbar = () => {
       left: itemPosNewAnimLeft.left + "px",
       height: activeWidthNewAnimHeight + "px",
       width: activeWidthNewAnimWidth + "px",
-    });
-    $("#navbarPageContent").on("click", "li", function (e) {
-      $("#navbarPageContent ul li").removeClass("active");
-      $(this).addClass("active");
-      var activeWidthNewAnimHeight = $(this).innerHeight();
-      var activeWidthNewAnimWidth = $(this).innerWidth();
-      var itemPosNewAnimTop = $(this).position();
-      var itemPosNewAnimLeft = $(this).position();
-      $("#page-selector").css({
-        top: itemPosNewAnimTop.top + "px",
-        left: itemPosNewAnimLeft.left + "px",
-        height: activeWidthNewAnimHeight + "px",
-        width: activeWidthNewAnimWidth + "px",
-      });
-    });
+    });    
   }
+
+  const resetSelector = () => {
+    $("#navbarPageContent ul li").removeClass("active");
+    $(this).addClass("active");
+    setTimeout(function () {
+      animation();
+    }, 200);
+  };
 
   useEffect(() => {
     animation();
@@ -59,7 +53,7 @@ const Navbar = () => {
                 <div className={styles.left}></div>
                 <div className={styles.right}></div>
               </div>
-              <PageOption />
+              <PageOption onClose={resetSelector}/>
             </ul>
           </div>
         </div>

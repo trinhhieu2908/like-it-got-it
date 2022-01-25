@@ -1,4 +1,3 @@
-import $ from "jquery";
 
 import { useDispatch } from "react-redux";
 import { searchProductActions } from "../../store/searchProduct";

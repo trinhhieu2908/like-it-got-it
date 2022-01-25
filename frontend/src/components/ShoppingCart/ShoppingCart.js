@@ -1,5 +1,7 @@
 import React from "react";
 
+import Backdrop from "../UI/Backdrop";
+
 import styles from "./ShoppingCart.module.css";
 
 const ShoppingCart = (props) => {
@@ -14,6 +16,7 @@ const ShoppingCart = (props) => {
         <a>Clients</a>
         <a>Contact</a>
       </div>
+      {/* <Backdrop onClick={props.onCloseCart} /> */}
     </React.Fragment>
   );
 };

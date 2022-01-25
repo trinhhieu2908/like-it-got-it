@@ -9,22 +9,24 @@ import {
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
-import Services from "./pages/Service/Services";
+import Shop from "./pages/Shop/Shop";
 import Checkout from "./pages/Checkout/Checkout";
 import Navbar from "./components/Navbar/Navbar";
+
+import styles from './App.module.css'
 
 const App = () => {
   return (
     <div id="main">
       <Router>
         <Navbar />
-        <main>
+        <main className={styles.main}>
           <Switch>
             <Route path="/" exact>
               <Home />
             </Route>
             <Route path="/shop" exact>
-              <Services />
+              <Shop />
             </Route>
             <Route path="/checkout" exact>
               <Checkout />

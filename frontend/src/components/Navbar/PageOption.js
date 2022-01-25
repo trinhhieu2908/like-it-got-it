@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 const PageOption = (props) => {
   return (
     <React.Fragment>
-      <li className="nav-item" onClick={props.onClose}>
+      <li className="nav-item" onClick={props.onClose} id='home'>
         <NavLink className="nav-link" to="/" exact>
           <i className="fas fa-tachometer-alt"></i>Home
         </NavLink>
       </li>
-      <li className="nav-item" onClick={props.onClose}>
+      <li className="nav-item" onClick={props.onClose} id='shop'>
         <NavLink className="nav-link" to="/shop" exact>
           <i className="fas fa-store"></i>Shop
         </NavLink>
