@@ -1,7 +1,9 @@
 const express = require("express");
+require('dotenv').config()
 const fs = require('fs')
 var multer = require('multer')
 const home = require('./controller/home');
+const product = require('./controller/product');
 const app = express()
 //var upload = multer()
 
@@ -14,5 +16,7 @@ app.use(express.json());
 //     res.send(appBundle)
 // })
 app.get('/home', home.getHome)
-
+app.post('/api/product', product.addProduct)
+app.get('/api/product', product.listAllProducts)
+app.patch('/api/product/:id', product.updateProduct)
 module.exports = app
