@@ -1,0 +1,10 @@
+{
+    "username": "root",
+    "password": "mysqlpassword",
+    "database": "lkgt",
+    "port": "3306",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+  
+  
