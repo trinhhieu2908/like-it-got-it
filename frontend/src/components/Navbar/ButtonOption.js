@@ -1,6 +1,6 @@
-
 import { useDispatch } from "react-redux";
 import { searchProductActions } from "../../store/searchProduct";
+import { cartActions } from "../../store/cart";
 
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import SidebarPageOption from "./SidebarPageOption";
@@ -31,16 +31,17 @@ const ButtonOption = () => {
     } else {
       document.getElementById("myShoppingCart").style.width = "45%";
     }
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    dispatch(cartActions.open());
   }
 
   function closeCart() {
     document.getElementById("myShoppingCart").style.width = "0";
     document.body.style.backgroundColor = "white";
+    dispatch(cartActions.close());
   }
 
   function openSearchProduct() {
-    dispatch(searchProductActions.open());    
+    dispatch(searchProductActions.open());
   }
 
   return (

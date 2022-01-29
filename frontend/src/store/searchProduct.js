@@ -13,6 +13,7 @@ const searchProductSlice = createSlice({
         open(state) {
             state.showSearchProduct = true;
             $("#search-product").slideDown("slow");
+            window.scrollTo({ top: 0, behavior: "smooth" });
         },
         close(state) {
             state.showSearchProduct = false;
