@@ -54,6 +54,11 @@ const ShoppingCart = (props) => {
               </span>
             </div>
           </div>
+          <div className={styles.cartButtonControl}>            
+            <a className={`btn btn-secondary ${styles.cartButton}`}>
+              Check out<i className="fas fa-long-arrow-alt-right"></i>
+            </a>
+          </div>
         </div>
       </div>
       {showCart && <Backdrop onClick={props.onCloseCart} />}
