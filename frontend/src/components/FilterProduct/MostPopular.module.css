@@ -31,7 +31,7 @@
 .bannerList h2 {
   font-family: "Roboto" !important;
   font-size: 28px !important;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-align: center;
 }
 
@@ -46,8 +46,8 @@
 }
 
 .bannerList ul li a {
-  border-color: #fff;
-  color: #fff;
+  border-color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   display: block;
   width: 140px;
   border: 1px solid;
@@ -62,7 +62,7 @@
   display: inline-block !important;
   padding: 7px 15px;
   border: 1px solid;
-  color: #ffffff;
+  color: #000000;
   margin-top: 20px;
   border-radius: 3px;
   font-family: "Roboto" !important;
@@ -70,8 +70,8 @@
 }
 
 .bannerList ul li a:hover {
-  color: #000000;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #000000;
   cursor: pointer;
   text-decoration: none;
 }

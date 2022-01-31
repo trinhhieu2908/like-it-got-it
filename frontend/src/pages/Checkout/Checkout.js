@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react";
+import CheckoutContent from '../../components/Checkout/CheckoutContent'
 const Checkout = () => {
-  return (
-  <div className="container">
-    
-    <h1 className="text-center" style={{paddingTop: "30%"}}>
-    Checkout
-    </h1>
-    
-  </div>
-  )
-}
+  return <React.Fragment>
+    <CheckoutContent />
+  </React.Fragment>;
+};
 export default Checkout;

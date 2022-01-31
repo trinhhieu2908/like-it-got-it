@@ -1,3 +1,5 @@
+import backgroundImage from '../../assets/Background/backgroundCategory.gif'
+
 import styles from "./MostPopular.module.css";
 
 const MostPopular = () => {
@@ -5,7 +7,7 @@ const MostPopular = () => {
     <div className={styles.banner}>
       <div className={styles.bannerImage}>
         <img
-          src="https://thumbs.gfycat.com/BetterHandmadeGull-size_restricted.gif"
+          src={backgroundImage}
           alt="banner-img"
         />
         <div className={styles.bannerList}>

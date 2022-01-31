@@ -1,0 +1,11 @@
+.checkout {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+@media (min-width: 1000px) {
+  .checkout {
+    flex-direction: row-reverse;
+  }
+}

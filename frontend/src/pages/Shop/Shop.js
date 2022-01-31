@@ -1,15 +1,15 @@
 import React from "react";
 
 import MostPopular from "../../components/FilterProduct/MostPopular";
-import Support from '../../components/ShopSupport/Support'
-import ListProduct from '../../components/Products/ListProduct'
+import Support from "../../components/ShopSupport/Support";
+import ListProduct from "../../components/Products/ListProduct";
 const Shop = () => {
   return (
-    <div>
+    <React.Fragment>
       <MostPopular />
       <Support />
       <ListProduct />
-    </div>
+    </React.Fragment>
   );
 };
 export default Shop;
