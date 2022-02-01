@@ -2,40 +2,26 @@ import React, { useEffect } from "react";
 import styles from "./Navbar.module.css";
 import $ from "jquery";
 
+import { useDispatch } from "react-redux";
+import { pageSelectorActions } from "../../store/pageSelector";
+
 import PageOption from "./PageOption";
 import ButtonOption from "./ButtonOption";
 import NavLogo from "./NavLogo";
 import SearchProduct from "../SearchProduct/SearchProduct";
 
 const Navbar = () => {
-  function animation() {
-    var tabsNewAnim = $("#navbarPageContent");
-    var activeItemNewAnim = tabsNewAnim.find(".active");
-    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-    var itemPosNewAnimTop = activeItemNewAnim.position();
-    var itemPosNewAnimLeft = activeItemNewAnim.position();
-    $("#page-selector").css({
-      top: itemPosNewAnimTop.top + "px",
-      left: itemPosNewAnimLeft.left + "px",
-      height: activeWidthNewAnimHeight + "px",
-      width: activeWidthNewAnimWidth + "px",
-    });    
-  }
+  const dispatch = useDispatch();
 
-  const resetSelector = () => {
-    $("#navbarPageContent ul li").removeClass("active");
-    $(this).addClass("active");
-    setTimeout(function () {
-      animation();
-    }, 200);
+  const resetSelector = (page) => {
+    dispatch(pageSelectorActions.changePage(page.target.id));
   };
 
   useEffect(() => {
-    animation();
+    dispatch(pageSelectorActions.runAnimation());
     $(window).on("resize", function () {
       setTimeout(function () {
-        animation();
+        dispatch(pageSelectorActions.runAnimation());
       }, 500);
     });
   }, []);
@@ -53,7 +39,7 @@ const Navbar = () => {
                 <div className={styles.left}></div>
                 <div className={styles.right}></div>
               </div>
-              <PageOption onClose={resetSelector}/>
+              <PageOption onClose={resetSelector} />
             </ul>
           </div>
         </div>

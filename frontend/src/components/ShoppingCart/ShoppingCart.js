@@ -1,20 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { pageSelectorActions } from "../../store/pageSelector";
+import { cartActions } from "../../store/cart";
 
 import Backdrop from "../UI/Backdrop";
 import CartItem from "./CartItem";
 
 import styles from "./ShoppingCart.module.css";
 
-const ShoppingCart = (props) => {
+const ShoppingCart = () => {
+  function closeCart() {
+    document.getElementById("myShoppingCart").style.width = "0";
+    document.body.style.backgroundColor = "white";
+    dispatch(cartActions.close());
+  }
+
+  const dispatch = useDispatch();
+
+  const resetSelector = () => {
+    closeCart();
+    dispatch(pageSelectorActions.changePage("checkout-page"));
+  };
+
   const showCart = useSelector((state) => state.cart.showCart);
   return (
     <React.Fragment>
       <div id="myShoppingCart" className={styles.shoppingCart}>
         <div className={styles.header}>
           <h2>Your Cart</h2>
-          <a className={styles.closeCartBtn} onClick={props.onCloseCart}>
+          <a className={styles.closeCartBtn} onClick={closeCart}>
             <i className="fas fa-times fa-sm"></i>
           </a>
         </div>
@@ -58,14 +75,18 @@ const ShoppingCart = (props) => {
               </span>
             </div>
           </div>
-          <div className={styles.cartButtonControl}>            
-            <a className={`btn btn-secondary ${styles.cartButton}`}>
+          <div className={styles.cartButtonControl}>
+            <Link
+              to="/checkout"
+              className={`btn btn-secondary ${styles.cartButton}`}
+              onClick={resetSelector}
+            >
               Check out<i className="fas fa-long-arrow-alt-right"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-      {showCart && <Backdrop onClick={props.onCloseCart} />}
+      {showCart && <Backdrop onClick={closeCart} />}
     </React.Fragment>
   );
 };

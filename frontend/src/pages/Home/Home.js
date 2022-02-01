@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import $ from "jquery";
+import { useDispatch } from "react-redux";
+import { pageSelectorActions } from "../../store/pageSelector";
 const Home = () => {
+  const dispatch = useDispatch();
   // const [homepageData, setHomepageData] = useState({});
 
   // const fetchHomepageData = async () => {
@@ -23,34 +25,15 @@ const Home = () => {
 
   // console.log(homepageData);
 
-  function animation() {
-    var tabsNewAnim = $("#navbarPageContent");
-    var activeItemNewAnim = tabsNewAnim.find(".active");
-    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-    var itemPosNewAnimTop = activeItemNewAnim.position();
-    var itemPosNewAnimLeft = activeItemNewAnim.position();
-    $("#page-selector").css({
-      top: itemPosNewAnimTop.top + "px",
-      left: itemPosNewAnimLeft.left + "px",
-      height: activeWidthNewAnimHeight + "px",
-      width: activeWidthNewAnimWidth + "px",
-    });
-  }
-
   const resetSelector = () => {
-    $("#navbarPageContent ul li").removeClass("active");
-    $("#shop").addClass("active");
-    setTimeout(function () {
-      animation();
-    }, 200);
+    dispatch(pageSelectorActions.changePage("shop-page"));
   };
 
   return (
     <div className="container">
       <h1 className="text-center" style={{ paddingTop: "30%" }}>
         HomePage{" "}
-        <Link to="/shop" onClick={resetSelector}>
+        <Link to="/shop/detail/p2" onClick={resetSelector}>
           Click to shop
         </Link>
       </h1>
@@ -61,22 +44,7 @@ const Home = () => {
       </p>
       <h1 className="text-center" style={{ paddingTop: "30%" }}>
         Home
-      </h1>
-      <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        Home
-      </h1>
-      <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        Home
-      </h1>
-      <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        Home
-      </h1>
-      <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        Home
-      </h1>
-      <h1 className="text-center" style={{ paddingTop: "30%" }}>
-        Home
-      </h1>
+      </h1>      
     </div>
   );
 };
