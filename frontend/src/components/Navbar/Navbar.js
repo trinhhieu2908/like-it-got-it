@@ -24,7 +24,7 @@ const Navbar = () => {
         dispatch(pageSelectorActions.runAnimation());
       }, 500);
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <React.Fragment>
