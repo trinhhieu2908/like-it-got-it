@@ -37,6 +37,7 @@
 
 .bannerList ul {
   margin-left: 0;  
+  margin-top: -30px;
 }
 
 .bannerList ul li {
@@ -83,6 +84,9 @@
   .bannerImage img {
     width: 98.9%;
   }
+  .bannerList h2 {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 815px) {
@@ -94,6 +98,10 @@
   }
   .bannerImage img {
     width: 98.6%;
+  }
+  
+  .bannerList ul {  
+    margin-top: -10px;
   }
 }
 

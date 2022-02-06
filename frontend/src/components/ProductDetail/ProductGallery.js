@@ -160,7 +160,7 @@ const ProductGallery = () => {
                 id="product-gallery-item-image-4"
               />
             </div>
-          </button>
+          </button>          
         </div>
       </div>
     </div>
