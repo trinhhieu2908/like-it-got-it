@@ -31,3 +31,34 @@ const image = databaseServer.getDatabaseInstance().define('image', {
         type: Sequelize.DATE
     }
 })
+
+async function addImages(arrayPics, idProduct){
+    try {
+        const listOfImages = [];
+        arrayPics.forEach(image => {
+            listOfImages.push({
+                idProduct: parseInt(idProduct),
+                url: image
+            })
+        })
+        const images = await image.bulkCreate(listOfImages)
+        return [null, images]
+    } catch (error) {
+        return [error, null]
+    }
+    
+}
+async function listImagesById(idProduct) {
+    try {
+        const images = await image.findAll({
+            where: {idProduct}
+        })
+        return [null, images]
+    } catch (error) {
+        return [error, null]
+    }
+}
+module.exports = {
+    addImages,
+    listImagesById
+}

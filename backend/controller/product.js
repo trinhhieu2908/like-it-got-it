@@ -65,8 +65,52 @@ async function updateProduct(req,res) {
         data: null
     })
 }
+async function deleteProduct(req,res) {
+    const id = req.params.id
+    //check missing id
+    if(!id) {
+        return res.json({
+                    errorMsg: "Missing id product",
+                    data: null
+        })
+    }
+    const pd = await product.deleteProduct(id)
+    if(pd[0]){
+        return res.json({
+            errorMsg: pd[0].message,
+            data: null
+        })
+    }
+    return res.json({
+        errorMsg: null,
+        data: pd[1]
+    })
+}
+async function listProductById(req,res) {
+    const id = req.params.id
+    //check missing id
+    if(!id) {
+        return res.json({
+                    errorMsg: "Missing id product",
+                    data: null
+        })
+    }
+    const pd = await product.listProductById(id)
+    if(pd[0]){
+        return res.json({
+            errorMsg: pd[0].message,
+            data: null
+        })
+    }
+    return res.json({
+        errorMsg: null,
+        data: pd[1]
+    })
+}
 module.exports = {
     addProduct,
     listAllProducts,
-    updateProduct
+    updateProduct,
+    deleteProduct,
+    listProductById
 }

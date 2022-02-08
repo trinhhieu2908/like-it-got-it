@@ -27,3 +27,72 @@ const category = databaseServer.getDatabaseInstance().define('category', {
         type: Sequelize.DATE
     }
 })
+async function addCategory(name) {
+    try {
+        const cg = await category.create({ name })
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
+async function updateCategory(name, idCategory) {
+    try {
+        const cg = await category.findByPk(idCategory)
+        if(!cg) {
+          return [{
+              "message": `Can not find category with id ${idCategory}`
+            }, null]
+        }
+        const updateCG = await cg.set(name)
+        await cg.save()
+        return [null, updateCG]
+      } catch (error) {
+        return [error, null]
+      }
+}
+async function deleteCategory(idCategory) {
+    try {
+        const cg = await category.findByPk(idCategory)
+        if(!cg) {
+          return [{
+              "message": `Can not find category with id ${idCategory}`
+            }, null]
+        }
+        const cgDelete = await cg.destroy({
+          where: {
+            id: idCategory
+          }
+        })
+        return [null, cgDelete]
+      } catch (error) {
+        return [error, null]
+      }
+}
+async function listAllCategory() {
+    try {
+        const cg = await category.findAll()
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
+async function listCategoryById(idCategory) {
+    try {
+        const cg = await category.findByPk(idCategory)
+        if(!cg) {
+          return [{
+              "message": `Can not find category with id ${idCategory}`
+            }, null]
+        }
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
+module.exports = {
+    addCategory,
+    updateCategory,
+    deleteCategory,
+    listAllCategory,
+    listCategoryById
+}

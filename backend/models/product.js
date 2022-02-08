@@ -111,8 +111,43 @@ async function updateProduct(productInfo, idProduct) {
     return [error, null]
   }
 }
+async function deleteProduct(idProduct) {
+  try {
+    const pd = await product.findByPk(idProduct)
+    if(!pd) {
+      return [{
+          "message": `Can not find product with id ${idProduct}`
+        }, null]
+    }
+    const pdDelete = await pd.destroy({
+      where: {
+        id: idProduct
+      }
+    })
+    return [null, pdDelete]
+  } catch (error) {
+    return [error, null]
+  }
+}
+
+async function listProductById(idProduct) {
+  try {
+    const pd = await product.findByPk(idProduct)
+    if(!pd) {
+      return [{
+          "message": `Can not find product with id ${idProduct}`
+        }, null]
+    }
+    return [null, pd]
+  } catch (error) {
+    return [error, null]
+  }
+}
+
 module.exports = {
   addProduct,
   listAllProducts,
-  updateProduct
+  updateProduct,
+  deleteProduct,
+  listProductById
 }

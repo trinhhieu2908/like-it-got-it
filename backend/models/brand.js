@@ -27,69 +27,72 @@ const brand = databaseServer.getDatabaseInstance().define('brand', {
         type: Sequelize.DATE
     }
 })
-// async function createPaymentLine(sapPurchase, eachBankAccount, CBA) {
-//   try {
-//     const PL = await paymentLine.create({
-//       sapPurchaseId: sapPurchase.sapPurchaseId,
-//       outGoingPaymentId: sapPurchase.outGoingPaymentId,
-//       bankAccountId: CBA.id,
-//       bankName: CBA.bankName,
-//       accountNumber: CBA.accountNumber,
-//       paidAmount: eachBankAccount.paidAmount,
-//       order: eachBankAccount.order,
-//     })
-//     return [null,PL]
-//   } catch (error) {
-//     return [error,null]
-//   }
-  
-// }
-// async function createPaymentLineNoBank(sapPurchase) {
-//   try {
-//     const PL = await paymentLine.create({
-//       sapPurchaseId: sapPurchase.sapPurchaseId,
-//       outGoingPaymentId: sapPurchase.outGoingPaymentId,
-//       bankAccountId: null,
-//       bankName: null,
-//       accountNumber: null,
-//       paidAmount: sapPurchase.totalAmount,
-//       order: 0,
-//     })
-//     return [null,PL]
-//   } catch (error) {
-//     return [error,null]
-//   }
-  
-// }
-
-// async function findAllPLByOGP (outGoingPaymentId) {
-//   try {
-//     const resultPaymentLine = await paymentLine.findAll({
-//       where: {
-//         outGoingPaymentId: outGoingPaymentId
-//       }
-//     })
-//     return [null,resultPaymentLine]
-//   } catch (error) {
-//     console.log('Error: ', error)
-//     return [error,null]
-//   }
-// }
-
-// async function listPaymentLineById (sapPurchaseId,outGoingPaymentId) {
-//   try {
-//     const resultPaymentLine = await paymentLine.findAll({
-//       where: {
-//         sapPurchaseId: sapPurchaseId,
-//         outGoingPaymentId: outGoingPaymentId
-//       }
-//     })
-//     return [null,resultPaymentLine]
-//   } catch (error) {
-//     console.log('Error: ', error)
-//     return [error,null]
-//   }
-// }
+async function addBrand(name) {
+    try {
+        const cg = await brand.create({ name })
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
+async function updateBrand(name, idBrand) {
+    try {
+        const cg = await brand.findByPk(idBrand)
+        if(!cg) {
+          return [{
+              "message": `Can not find brand with id ${idBrand}`
+            }, null]
+        }
+        const updateCG = await cg.set(name)
+        await cg.save()
+        return [null, updateCG]
+      } catch (error) {
+        return [error, null]
+      }
+}
+async function deleteBrand(idBrand) {
+    try {
+        const cg = await brand.findByPk(idBrand)
+        if(!cg) {
+          return [{
+              "message": `Can not find brand with id ${idBrand}`
+            }, null]
+        }
+        const cgDelete = await cg.destroy({
+          where: {
+            id: idBrand
+          }
+        })
+        return [null, cgDelete]
+      } catch (error) {
+        return [error, null]
+      }
+}
+async function listAllBrand() {
+    try {
+        const cg = await brand.findAll()
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
+async function listBrandById(idBrand) {
+    try {
+        const cg = await brand.findByPk(idBrand)
+        if(!cg) {
+          return [{
+              "message": `Can not find brand with id ${idBrand}`
+            }, null]
+        }
+        return [null, cg]
+    } catch (error) {
+        return [error, null]
+    }
+}
 module.exports = {
-
+    addBrand,
+    updateBrand,
+    deleteBrand,
+    listAllBrand,
+    listBrandById
 }
