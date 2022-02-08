@@ -30,27 +30,21 @@ const ProductDetail = () => {
       description: productDetail.desc,
       isHot: productDetail.hot === 1,
       sale: productDetail.saleOff,
-      image1: productDetail.images[0].url,
-      image2: productDetail.images[1].url,
+      images: productDetail.images,
     };
 
-    console.log(productDetail)
-    console.log('all')
-
-    setProductDetail(productDetail);
+    setProductDetail(loadedProductDetail);
   }, []);
 
   const fetchProductDetailHandler = useCallback(() => {
-    const requestConfigSubmitOrder = {      
+    const requestConfigSubmitOrder = {
       url: `/api/product/${params.productId}`,
     };
     fetchProductDetail(requestConfigSubmitOrder, transformedProductDetail);
-    console.log("fetch")
   }, [fetchProductDetail, transformedProductDetail]);
 
   useEffect(() => {
     fetchProductDetailHandler();
-    console.log("first load")
   }, [fetchProductDetailHandler]);
 
   let productContent;
@@ -63,32 +57,30 @@ const ProductDetail = () => {
     <p>{productDetailHasError}</p>;
   }
 
-  // if (!isLoadingProductDetail && !productDetailHasError) {
-  //   productContent = (
-
-  //   );
-  // }
-
-  console.log(productDetail)
+  if (!isLoadingProductDetail && !productDetailHasError) {
+    if (Object.entries(productDetail).length !== 0) {
+      productContent = (
+        <div className={`row ${styles["scale-single"]}`}>
+          <div className="col-md-6">
+            <ProductGallery images={productDetail.images} />
+          </div>
+          <div className="col-md-6">
+            <ProductDetailInformation            
+              name={productDetail.name}
+              description={productDetail.description}
+              price={productDetail.price}
+              category={productDetail.category}
+            />
+          </div>
+        </div>
+      );
+    }
+  }
 
   return (
     <div className={styles.content}>
       <div className={`container ${styles["container-style"]}`}>
-        <div className={styles["product-detail"]}>
-          <div className={`row ${styles["scale-single"]}`}>
-            <div className="col-md-6">
-              <ProductGallery />
-            </div>
-            <div className="col-md-6">
-              <ProductDetailInformation
-                name={productDetail.name}
-                description={productDetail.description}
-                price={productDetail.price}
-                category={productDetail.category}
-              />
-            </div>
-          </div>
-        </div>
+        <div className={styles["product-detail"]}>{productContent}</div>
       </div>
     </div>
   );

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import $ from "jquery";
 
-import styles from './ProductGallery.module.css'
+import styles from "./ProductGallery.module.css";
 
-const ProductGallery = () => {
-  const firstImage =
-    "https://goldievietnam.com/wp-content/uploads/2020/10/1-5-scaled-800x1000.jpg";
+const ProductGallery = (props) => {
+  const firstImage = props.images[0].url;
 
   const [isHold, setIsHold] = useState(false);
   const [imageSelect, setImageSelect] = useState(firstImage);
@@ -65,8 +64,8 @@ const ProductGallery = () => {
         });
       }, 300);
     });
-    $("#product-gallery-item-image-1").addClass("active");
-    $("#product-gallery-item-image-1").css({
+    $("#product-gallery-item-image-0").addClass("active");
+    $("#product-gallery-item-image-0").css({
       border: "1px solid #31dd25",
       opacity: "1",
     });
@@ -78,16 +77,25 @@ const ProductGallery = () => {
   const imageMagnifyingClasses = `${styles["image-magnifying"]} ${
     isHold ? styles["image-magnifying-hold"] : ""
   }`;
+
   return (
     <div className={styles["product-gallery"]}>
       <div className={`row m-0 ${styles["row-product-gallery"]}`}>
         <figure className={styles["product-main-image"]}>
-          <span className={`${styles.productLabel} ${styles.productLabelHot}`}>
-            Hot
-          </span>
-          <span className={`${styles.productLabel} ${styles.productLabelSale}`}>
-            Sale
-          </span>
+          {props.isHot && (
+            <span
+              className={`${styles.productLabel} ${styles.productLabelHot}`}
+            >
+              Hot
+            </span>
+          )}
+          {props.sale && (
+            <span
+              className={`${styles.productLabel} ${styles.productLabelSale}`}
+            >
+              Sale {props.sale} %
+            </span>
+          )}
           <div className={styles["zoom-image"]}>
             <div
               className={imageContentClasses}
@@ -113,54 +121,21 @@ const ProductGallery = () => {
           className={styles["product-image-gallery"]}
           id="button-product-image-gallery"
         >
-          <button
-            className={styles["product-gallery-item"]}
-            onClick={selectImageHandler}
-          >
-            <div className={styles["product-gallery-image-wrapper"]}>
-              <img
-                src="https://goldievietnam.com/wp-content/uploads/2020/10/1-5-scaled-800x1000.jpg"
-                alt="product"
-                id="product-gallery-item-image-1"
-              />
-            </div>
-          </button>
-          <button
-            className={styles["product-gallery-item"]}
-            onClick={selectImageHandler}
-          >
-            <div className={styles["product-gallery-image-wrapper"]}>
-              <img
-                src="https://goldievietnam.com/wp-content/uploads/2020/10/2-5-scaled-800x1000.jpg"
-                alt="product"
-                id="product-gallery-item-image-2"
-              />
-            </div>
-          </button>
-          <button
-            className={styles["product-gallery-item"]}
-            onClick={selectImageHandler}
-          >
-            <div className={styles["product-gallery-image-wrapper"]}>
-              <img
-                src="https://goldievietnam.com/wp-content/uploads/2021/07/1233212-800x1000.jpg"
-                alt="product"
-                id="product-gallery-item-image-3"
-              />
-            </div>
-          </button>
-          <button
-            className={styles["product-gallery-item"]}
-            onClick={selectImageHandler}
-          >
-            <div className={styles["product-gallery-image-wrapper"]}>
-              <img
-                src="https://goldievietnam.com/wp-content/uploads/2021/07/04d6205b79f28dacd4e32-800x1000.jpg"
-                alt="product"
-                id="product-gallery-item-image-4"
-              />
-            </div>
-          </button>          
+          {props.images.map((image, index) => (
+            <button
+              key={image.id}
+              className={styles["product-gallery-item"]}
+              onClick={selectImageHandler}
+            >
+              <div className={styles["product-gallery-image-wrapper"]}>
+                <img
+                  src={image.url}
+                  alt="product"
+                  id={`product-gallery-item-image-${index}`}
+                />
+              </div>
+            </button>
+          ))}
         </div>
       </div>
     </div>
