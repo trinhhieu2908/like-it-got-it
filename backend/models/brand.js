@@ -94,5 +94,6 @@ module.exports = {
     updateBrand,
     deleteBrand,
     listAllBrand,
-    listBrandById
+    listBrandById,
+    brand
 }

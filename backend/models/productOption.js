@@ -41,67 +41,21 @@ const product = databaseServer.getDatabaseInstance().define('productOption', {
         type: Sequelize.DATE
     }
 })
-// async function createPaymentLine(sapPurchase, eachBankAccount, CBA) {
+// async function addProductOption () {
 //   try {
-//     const PL = await paymentLine.create({
-//       sapPurchaseId: sapPurchase.sapPurchaseId,
-//       outGoingPaymentId: sapPurchase.outGoingPaymentId,
-//       bankAccountId: CBA.id,
-//       bankName: CBA.bankName,
-//       accountNumber: CBA.accountNumber,
-//       paidAmount: eachBankAccount.paidAmount,
-//       order: eachBankAccount.order,
+//     const pd = await productOption.create({
+//       idCategory: productInfo.idCategory,
+//       idBrand: productInfo.idBrand,
+//       name: productInfo.name,
+//       price: productInfo.price,
+//       priceAfterSale: productInfo.priceAfterSale,
+//       saleOff: productInfo.saleOff,
+//       desc: productInfo.desc,
+//       hot: productInfo.hot
 //     })
-//     return [null,PL]
+//     return [null, pd]
 //   } catch (error) {
-//     return [error,null]
-//   }
-  
-// }
-// async function createPaymentLineNoBank(sapPurchase) {
-//   try {
-//     const PL = await paymentLine.create({
-//       sapPurchaseId: sapPurchase.sapPurchaseId,
-//       outGoingPaymentId: sapPurchase.outGoingPaymentId,
-//       bankAccountId: null,
-//       bankName: null,
-//       accountNumber: null,
-//       paidAmount: sapPurchase.totalAmount,
-//       order: 0,
-//     })
-//     return [null,PL]
-//   } catch (error) {
-//     return [error,null]
-//   }
-  
-// }
-
-// async function findAllPLByOGP (outGoingPaymentId) {
-//   try {
-//     const resultPaymentLine = await paymentLine.findAll({
-//       where: {
-//         outGoingPaymentId: outGoingPaymentId
-//       }
-//     })
-//     return [null,resultPaymentLine]
-//   } catch (error) {
-//     console.log('Error: ', error)
-//     return [error,null]
-//   }
-// }
-
-// async function listPaymentLineById (sapPurchaseId,outGoingPaymentId) {
-//   try {
-//     const resultPaymentLine = await paymentLine.findAll({
-//       where: {
-//         sapPurchaseId: sapPurchaseId,
-//         outGoingPaymentId: outGoingPaymentId
-//       }
-//     })
-//     return [null,resultPaymentLine]
-//   } catch (error) {
-//     console.log('Error: ', error)
-//     return [error,null]
+//     return [error, null]
 //   }
 // }
 module.exports = {

@@ -1,5 +1,9 @@
+const { Model } = require('sequelize')
 const Sequelize = require('sequelize')
 const databaseServer = require('../integration/sql')
+const {image} = require('./image')
+const {category} = require('./category')
+const {brand} = require('./brand')
 /*
   Thong tin san pham chung. 
   Lien ket voi bang Image: 1 - N,
@@ -89,7 +93,21 @@ async function addProduct(productInfo) {
 }
 async function listAllProducts() {
   try {
-    const pd = await product.findAll()
+    const pd = await product.findAll({
+      include: [
+        { model: image, 
+          //as: 'images',
+        },
+        { model: brand, 
+          // as: 'brandName',
+          attributes: ['name']
+        },
+        { model: category, 
+          // as: 'brandName',
+          attributes: ['name']
+        }
+      ]
+    })
     return [null, pd]
   } catch (error) {
     return [error, null]
@@ -143,7 +161,24 @@ async function listProductById(idProduct) {
     return [error, null]
   }
 }
-
+product.hasMany(image, {
+  foreignKey: {
+    name: "idProduct",
+    allowNull: true
+  }
+})
+product.belongsTo(brand, {
+  foreignKey: {
+    name: "idBrand",
+    allowNull: true
+  }
+})
+product.belongsTo(category, {
+  foreignKey: {
+    name: "idCategory",
+    allowNull: true
+  }
+})
 module.exports = {
   addProduct,
   listAllProducts,

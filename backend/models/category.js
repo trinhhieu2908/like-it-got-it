@@ -94,5 +94,6 @@ module.exports = {
     updateCategory,
     deleteCategory,
     listAllCategory,
-    listCategoryById
+    listCategoryById,
+    category
 }
