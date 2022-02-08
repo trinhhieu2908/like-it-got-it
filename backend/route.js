@@ -8,6 +8,7 @@ const category = require('./controller/category');
 const brand = require('./controller/brand')
 const size = require('./controller/size')
 const image = require('./controller/image')
+const email = require('./controller/email')
 const productOption = require('./controller/productOption')
 const {upload} = require('./middleware/upload')
 const app = express()
@@ -81,4 +82,7 @@ app.get('/api/size/:id', size.listSizeById)
 
 // api add product option
 app.post('/api/product-option', productOption.addProductOption)
+
+// api send email 
+app.post('/api/email', email.sendMailController)
 module.exports = app
