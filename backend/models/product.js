@@ -150,7 +150,22 @@ async function deleteProduct(idProduct) {
 
 async function listProductById(idProduct) {
   try {
-    const pd = await product.findByPk(idProduct)
+    const pd = await product.findByPk(idProduct, {
+      include: [
+        { model: image, 
+          //as: 'images',
+        },
+        { model: brand, 
+          // as: 'brandName',
+          attributes: ['name']
+        },
+        { model: category, 
+          // as: 'brandName',
+          attributes: ['name']
+        }
+      ]
+    }
+    )
     if(!pd) {
       return [{
           "message": `Can not find product with id ${idProduct}`
