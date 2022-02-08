@@ -59,6 +59,7 @@ async function listImagesById(idProduct) {
     }
 }
 module.exports = {
+    image,
     addImages,
     listImagesById
 }
