@@ -109,7 +109,7 @@ async function listAllProducts(skip) {
           order: ['idSize','ASC']
         }
       ],
-      limit: 2,
+      limit: 12,
       offset,
       order: [['updatedAt', 'DESC']]
     })
