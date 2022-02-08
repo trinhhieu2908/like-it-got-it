@@ -1,11 +1,11 @@
-
-
 import ProductItem from "./ProductItem";
 
 import styles from "./ListProduct.module.css";
 
-
-const ListProduct = (props) => { 
+const ListProduct = (props) => {
+  // props.products.map((product) => {
+  //   console.log(product);
+  // })
   return (
     <div className={styles.content}>
       <div className={`container ${styles.containerStyle}`}>
@@ -14,9 +14,12 @@ const ListProduct = (props) => {
             {props.products.map((product) => (
               <ProductItem
                 key={product.id}
-                category={product.category}
                 name={product.name}
                 price={product.price}
+                category={product.category}
+                brand={product.brand}
+                isHot={product.isHot}
+                sale={product.sale}
                 image1={product.image1}
                 image2={product.image2}
               />

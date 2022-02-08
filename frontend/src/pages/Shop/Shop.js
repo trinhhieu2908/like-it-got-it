@@ -7,8 +7,8 @@ import useHttp from "../../hook/use-http";
 import MostPopular from "../../components/FilterProduct/MostPopular";
 import Support from "../../components/ShopSupport/Support";
 import ListProduct from "../../components/Products/ListProduct";
-
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
+import LoadingSpinner from '../../components/UI/LoadingSpinner'
 
 // const loadedProducts = [
 //   {
@@ -78,13 +78,32 @@ const Shop = () => {
 
   const [listProduct, setListProduct] = useState([]);
   const {
-    isLoadingLoadedProduct,
+    isLoading: isLoadingLoadedProduct,
     error: loadedProductHasError,
     sendRequest: fetchProductData,
   } = useHttp();
 
   const transformedProductData = useCallback((productData) => {
-    setListProduct(productData);
+    const loadedProduct = [];
+
+    if (productData != null) {
+      console.log(productData);
+
+      for (let i = 0; i < productData.length; i++) {
+        loadedProduct.push({
+          id: productData[i].id,
+          name: productData[i].name,
+          price: productData[i].price,
+          category: productData[i].idCategory,
+          brand: productData[i].idBrand,
+          description: productData[i].desc,
+          isHot: productData[i].hot === 1,
+          sale: productData[i].saleOff,
+        });
+      }
+    }
+
+    setListProduct(loadedProduct);
   }, []);
 
   const queryParams = new URLSearchParams(location.search);
@@ -109,6 +128,22 @@ const Shop = () => {
     fetchProductDataHandler();
   }, [fetchProductDataHandler]);
 
+  console.log(listProduct);
+
+  let listProductContent;
+
+  if(isLoadingLoadedProduct){
+    listProductContent = <LoadingSpinner />
+  }
+
+  if(loadedProductHasError) {
+    <p>{loadedProductHasError}</p>
+  }
+
+  if(!isLoadingLoadedProduct && !loadedProductHasError) {
+    listProductContent = <ListProduct products={listProduct} />
+  }
+
   return (
     <React.Fragment>
       <MostPopular />
@@ -118,11 +153,7 @@ const Shop = () => {
         </Route>
         <Route path="/shop/products" exact>
           <Support />
-          {loadedProductHasError && <p>{loadedProductHasError}</p>}
-          {isLoadingLoadedProduct && <p>loading ...</p>}
-          {!loadedProductHasError && !isLoadingLoadedProduct && (
-            <ListProduct products={listProduct} />
-          )}
+          {listProductContent}
         </Route>
         <Route path="/shop/detail/:productId" exact>
           <ProductDetail />

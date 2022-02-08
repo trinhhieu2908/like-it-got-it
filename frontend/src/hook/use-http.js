@@ -15,13 +15,13 @@ const useHttp = () => {
               body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
           }
         );
-        if (!response.ok) {
+        if (response.errorMsg) {
           throw new Error("Something went wrong!");
         }
   
         const data = await response.json();
   
-        applyData(data);
+        applyData(data.data);
 
       } catch (error) {
         setError(error.message);
