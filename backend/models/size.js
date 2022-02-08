@@ -94,5 +94,6 @@ module.exports = {
     updateSize,
     deleteSize,
     listAllSize,
-    listSizeById
+    listSizeById,
+    size
 }

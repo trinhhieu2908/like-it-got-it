@@ -20,7 +20,8 @@ async function addProduct(req,res) {
 }
 
 async function listAllProducts(req,res) {
-    const pd = await product.listAllProducts()
+    const skip = req.query.skip || 0
+    const pd = await product.listAllProducts(skip)
     if(pd[0]){
         return res.json({
             errorMsg: pd[0].message,
