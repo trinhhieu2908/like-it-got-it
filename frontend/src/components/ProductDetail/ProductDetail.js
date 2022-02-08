@@ -41,7 +41,7 @@ const ProductDetail = () => {
       url: `/api/product/${params.productId}`,
     };
     fetchProductDetail(requestConfigSubmitOrder, transformedProductDetail);
-  }, [fetchProductDetail, transformedProductDetail]);
+  }, [fetchProductDetail, transformedProductDetail, params.productId]);
 
   useEffect(() => {
     fetchProductDetailHandler();
@@ -65,7 +65,7 @@ const ProductDetail = () => {
             <ProductGallery images={productDetail.images} />
           </div>
           <div className="col-md-6">
-            <ProductDetailInformation            
+            <ProductDetailInformation
               name={productDetail.name}
               description={productDetail.description}
               price={productDetail.price}

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-import useHttp from "../../hook/use-http";
+
 
 import MostPopular from "../../components/FilterProduct/MostPopular";
 import Support from "../../components/ShopSupport/Support";
 import ListProduct from "../../components/Products/ListProduct";
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
-import LoadingSpinner from '../../components/UI/LoadingSpinner'
+
 
 // const loadedProducts = [
 //   {
@@ -74,78 +74,14 @@ import LoadingSpinner from '../../components/UI/LoadingSpinner'
 //   }
 // };
 const Shop = () => {
-  const location = useLocation();
-
-  const [listProduct, setListProduct] = useState([]);
-  const {
-    isLoading: isLoadingLoadedProduct,
-    error: loadedProductHasError,
-    sendRequest: fetchProductData,
-  } = useHttp();
-
-  const transformedProductData = useCallback((productData) => {
-    const loadedProduct = [];
-
-    if (productData != null) {
-      // console.log(productData);
-
-      for (let i = 0; i < productData.length; i++) {
-        loadedProduct.push({
-          id: productData[i].id,
-          name: productData[i].name,
-          price: productData[i].price,
-          category: productData[i].category.name,
-          brand: productData[i].brand.name,
-          description: productData[i].desc,
-          isHot: productData[i].hot === 1,
-          sale: productData[i].saleOff,
-          image1: productData[i].images[0].url,
-          image2: productData[i].images[1].url,
-        });
-      }
-    }
-
-    setListProduct(loadedProduct);
-  }, []);
+  const location = useLocation();  
 
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get("category");
 
   // const productFilter = filterProduct(loadedProducts, category);
 
-  const fetchProductDataHandler = useCallback(() => {
-    let urlFetchProductData;
-    if (category === null) {
-      urlFetchProductData = "/api/product";
-    } else {
-      urlFetchProductData = `/api/product/${category}`;
-    }
-    const requestConfigSubmitOrder = {
-      url: urlFetchProductData,
-    };
-    fetchProductData(requestConfigSubmitOrder, transformedProductData);
-  }, [fetchProductData, transformedProductData, category]);
-
-  useEffect(() => {
-    fetchProductDataHandler();
-  }, [fetchProductDataHandler]);
-
-  // console.log(listProduct);
-
-  let listProductContent;
-
-  if(isLoadingLoadedProduct){
-    listProductContent = <LoadingSpinner />
-  }
-
-  if(loadedProductHasError) {
-    <p>{loadedProductHasError}</p>
-  }
-
-  if(!isLoadingLoadedProduct && !loadedProductHasError) {
-    listProductContent = <ListProduct products={listProduct} />
-  }
-
+    
   return (
     <React.Fragment>
       <MostPopular />
@@ -155,7 +91,7 @@ const Shop = () => {
         </Route>
         <Route path="/shop/products" exact>
           <Support />
-          {listProductContent}
+          <ListProduct category={category}/>
         </Route>
         <Route path="/shop/detail/:productId" exact>
           <ProductDetail />
