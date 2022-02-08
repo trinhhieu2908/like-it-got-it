@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./ProductItem.module.css";
 
 const ProductItem = (props) => {
+  
   const [isHover, setIsHover] = useState(false);
 
   const styleImage = `${styles.productImage} ${styles.lazyLoadImageBg}`;
-  const productActionClasses = `${styles.productAction} ${isHover ? styles.productActionActive : ''}`
+  const productActionClasses = `${styles.productAction} ${
+    isHover ? styles.productActionActive : ""
+  }`;
 
   const hoverHandler = () => {
     setIsHover(true);
@@ -24,22 +28,16 @@ const ProductItem = (props) => {
         onMouseOut={removerHoverHandler}
       >
         <figure className={styles.productMedia}>
-            <span className={`${styles.productLabel} ${styles.productLabelHot}`}>Hot</span>
-            <span className={`${styles.productLabel} ${styles.productLabelSale}`}>Sale</span>
+          <span className={`${styles.productLabel} ${styles.productLabelHot}`}>
+            Hot
+          </span>
+          <span className={`${styles.productLabel} ${styles.productLabelSale}`}>
+            Sale
+          </span>
           <a>
             <span className={styleImage}>
-              {!isHover && (
-                <img
-                  alt="product"
-                  src={props.image1}
-                />
-              )}
-              {isHover && (
-                <img
-                  alt="product"
-                  src={props.image2}
-                />
-              )}
+              {!isHover && <img alt="product" src={props.image1} />}
+              {isHover && <img alt="product" src={props.image2} />}
             </span>
           </a>
           <div className={productActionClasses}>
@@ -48,17 +46,15 @@ const ProductItem = (props) => {
               add to cart
             </a>
             <div className={styles.vl}></div>
-            <a href="/shop/detail" className={styles.btnProduct}>
+            <Link to="/shop/detail/p1" className={styles.btnProduct}>
               <i className="fas fa-eye"></i>
               view detail
-            </a>
+            </Link>
           </div>
         </figure>
         <div className={styles.productBody}>
           <div className={styles.productCategory}>{props.category}</div>
-          <div className={styles.productTitle}>
-            {props.name}
-          </div>
+          <div className={styles.productTitle}>{props.name}</div>
           <div className={styles.productPrice}>{props.price}</div>
         </div>
       </div>

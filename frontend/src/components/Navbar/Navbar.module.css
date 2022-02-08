@@ -49,7 +49,7 @@ i {
   position: relative;
   text-align: center;
 }
-.navbarPageContent > ul > li.active > a {
+/* .navbarPageContent > ul > li.active > a {
   background-color: transparent;
   transition: all 0.7s;
 }
@@ -68,7 +68,7 @@ i {
 }
 .navbarPageContent .active > a:not(:only-child):after {
   transform: rotate(90deg);
-}
+} */
 
 .page-selector {
   display: inline-block;

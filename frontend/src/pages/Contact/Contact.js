@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react";
+import ContactContent from "../../components/Contact/ContactContent";
 const Contact = () => {
   return (
-    <div className="container">
-    
-      <h1 className="text-center" style={{paddingTop: "30%"}}>
-        Contact Us
-      </h1>
-      
-    </div>
-  )
-}
+    <ContactContent />
+  );
+};
 export default Contact;

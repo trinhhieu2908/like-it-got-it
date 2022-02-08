@@ -32,13 +32,7 @@ const ButtonOption = () => {
       document.getElementById("myShoppingCart").style.width = "45%";
     }
     dispatch(cartActions.open());
-  }
-
-  function closeCart() {
-    document.getElementById("myShoppingCart").style.width = "0";
-    document.body.style.backgroundColor = "white";
-    dispatch(cartActions.close());
-  }
+  }  
 
   function openSearchProduct() {
     dispatch(searchProductActions.open());
@@ -55,7 +49,7 @@ const ButtonOption = () => {
       <a className={`nav-link ${styles["nav-option-btn"]}`} onClick={openCart}>
         <i className="fas fa-shopping-cart"></i>
       </a>
-      <ShoppingCart onCloseCart={closeCart} />
+      <ShoppingCart />
       <Login btnOptionStyle={styles["nav-option-btn"]} />
       <button
         className={`navbar-toggler`}

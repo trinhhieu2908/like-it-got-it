@@ -1,46 +1,57 @@
+import { Link } from "react-router-dom";
+
+import backgroundImage from "../../assets/Background/backgroundCategory.gif";
+
 import styles from "./MostPopular.module.css";
+
+const loadedCategory = [
+  {
+    id: 1,
+    name: "Tee",
+  },
+  {
+    id: 2,
+    name: "Shirts",
+  },
+  {
+    id: 3,
+    name: "Pants",
+  },
+  {
+    id: 4,
+    name: "Hoodie",
+  },
+  {
+    id: 5,
+    name: "Jacket",
+  },
+  {
+    id: 6,
+    name: "Shoes",
+  },
+  {
+    id: 7,
+    name: "Bags",
+  },
+  {
+    id: 8,
+    name: "Accessories",
+  },
+];
 
 const MostPopular = () => {
   return (
     <div className={styles.banner}>
       <div className={styles.bannerImage}>
-        <img
-          src="https://thumbs.gfycat.com/BetterHandmadeGull-size_restricted.gif"
-          alt="banner-img"
-        />
+        <img src={backgroundImage} alt="banner-img" />
         <div className={styles.bannerList}>
           <h2>PRODUCTS</h2>
           <ul>
-            <li>
-              <a className={styles.button}>All</a>
-            </li>
-            <li>
-              <a className={styles.button}>Shirt</a>
-            </li>
-            <li>
-              <a className={styles.button}>T-Shirt</a>
-            </li>
-            <li>
-              <a className={styles.button}>Pants</a>
-            </li>
-            <li>
-              <a className={styles.button}>Shorts</a>
-            </li>
-            <li>
-              <a className={styles.button}>Hoodies</a>
-            </li>
-            <li>
-              <a className={styles.button}>Outerwear</a>
-            </li>
-            <li>
-              <a className={styles.button}>Bags</a>
-            </li>
-            <li>
-              <a className={styles.button}>Backpack</a>
-            </li>
-            <li>
-              <a className={styles.button}>Accessories</a>
-            </li>
+            {loadedCategory.map((category) => (
+              <li key={category.id}>
+                <Link to={`/shop/products?category=${category.name}`} className={styles.button}>{category.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
