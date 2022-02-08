@@ -8,6 +8,7 @@ const category = require('./controller/category');
 const brand = require('./controller/brand')
 const size = require('./controller/size')
 const image = require('./controller/image')
+const productOption = require('./controller/productOption')
 const {upload} = require('./middleware/upload')
 const app = express()
 //var upload = multer()
@@ -77,4 +78,7 @@ app.delete('/api/size/:id', size.deleteSize)
 app.get('/api/size', size.listAllSize)
 // api list one size by id
 app.get('/api/size/:id', size.listSizeById)
+
+// api add product option
+//app.get('/api/product-option', product.addProductOption)
 module.exports = app
