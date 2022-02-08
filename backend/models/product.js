@@ -4,6 +4,7 @@ const databaseServer = require('../integration/sql')
 const {image} = require('./image')
 const {category} = require('./category')
 const {brand} = require('./brand')
+const {productOption} = require('./productOption')
 /*
   Thong tin san pham chung. 
   Lien ket voi bang Image: 1 - N,
@@ -84,29 +85,33 @@ async function addProduct(productInfo) {
       priceAfterSale: productInfo.priceAfterSale,
       saleOff: productInfo.saleOff,
       desc: productInfo.desc,
-      hot: productInfo.hot
+      hot: productInfo.hot,
     })
     return [null, pd]
   } catch (error) {
     return [error, null]
   }
 }
-async function listAllProducts() {
+async function listAllProducts(skip) {
+  const offset = parseInt(skip)
   try {
     const pd = await product.findAll({
       include: [
         { model: image, 
-          //as: 'images',
         },
         { model: brand, 
-          // as: 'brandName',
           attributes: ['name']
         },
         { model: category, 
-          // as: 'brandName',
           attributes: ['name']
+        },
+        { model: productOption,
+          order: ['idSize','ASC']
         }
-      ]
+      ],
+      limit: 2,
+      offset,
+      order: [['updatedAt', 'DESC']]
     })
     return [null, pd]
   } catch (error) {
@@ -191,6 +196,12 @@ product.belongsTo(brand, {
 product.belongsTo(category, {
   foreignKey: {
     name: "idCategory",
+    allowNull: true
+  }
+})
+product.hasMany(productOption, {
+  foreignKey: {
+    name: "idProduct",
     allowNull: true
   }
 })

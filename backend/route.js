@@ -80,5 +80,5 @@ app.get('/api/size', size.listAllSize)
 app.get('/api/size/:id', size.listSizeById)
 
 // api add product option
-//app.get('/api/product-option', product.addProductOption)
+app.post('/api/product-option', productOption.addProductOption)
 module.exports = app

@@ -7,7 +7,7 @@ const databaseServer = require('../integration/sql')
   Lien ket voi bang Size: 1 - 1,
   Lien ket voi bang Color: 1 - 1,
 */
-const product = databaseServer.getDatabaseInstance().define('productOption', {
+const productOption = databaseServer.getDatabaseInstance().define('productOption', {
     /*
       Id tự tăng
     */
@@ -24,10 +24,6 @@ const product = databaseServer.getDatabaseInstance().define('productOption', {
       allowNull: false,
       type: Sequelize.INTEGER
     }, 
-    idColor: {
-      allowNull: false,
-      type: Sequelize.INTEGER
-    },
     idSize: {
       allowNull: false,
       type: Sequelize.INTEGER,
@@ -41,23 +37,19 @@ const product = databaseServer.getDatabaseInstance().define('productOption', {
         type: Sequelize.DATE
     }
 })
-// async function addProductOption () {
-//   try {
-//     const pd = await productOption.create({
-//       idCategory: productInfo.idCategory,
-//       idBrand: productInfo.idBrand,
-//       name: productInfo.name,
-//       price: productInfo.price,
-//       priceAfterSale: productInfo.priceAfterSale,
-//       saleOff: productInfo.saleOff,
-//       desc: productInfo.desc,
-//       hot: productInfo.hot
-//     })
-//     return [null, pd]
-//   } catch (error) {
-//     return [error, null]
-//   }
-// }
+async function addProductOption (idProduct, idSize) {
+  try {
+    console.log("--------------------------------", idProduct, idSize);
+    const pd = await productOption.create({
+      idProduct,
+      idSize,
+    })
+    return [null, pd]
+  } catch (error) {
+    return [error, null]
+  }
+}
 module.exports = {
-
+  productOption,
+  addProductOption
 }
