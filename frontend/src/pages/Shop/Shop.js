@@ -87,18 +87,20 @@ const Shop = () => {
     const loadedProduct = [];
 
     if (productData != null) {
-      console.log(productData);
+      // console.log(productData);
 
       for (let i = 0; i < productData.length; i++) {
         loadedProduct.push({
           id: productData[i].id,
           name: productData[i].name,
           price: productData[i].price,
-          category: productData[i].idCategory,
-          brand: productData[i].idBrand,
+          category: productData[i].category.name,
+          brand: productData[i].brand.name,
           description: productData[i].desc,
           isHot: productData[i].hot === 1,
           sale: productData[i].saleOff,
+          image1: productData[i].images[0].url,
+          image2: productData[i].images[1].url,
         });
       }
     }
@@ -128,7 +130,7 @@ const Shop = () => {
     fetchProductDataHandler();
   }, [fetchProductDataHandler]);
 
-  console.log(listProduct);
+  // console.log(listProduct);
 
   let listProductContent;
 

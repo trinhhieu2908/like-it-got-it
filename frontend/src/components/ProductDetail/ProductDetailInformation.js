@@ -1,15 +1,14 @@
 
 import styles from './ProductDetailInformation.module.css'
 
-const ProductDetailInformation = () => {
+const ProductDetailInformation = (props) => {
   return (
     <div className={styles["product-details"]}>
-      <h1>Iron logo suede hoodie</h1>
-      <div className={styles["product-price"]}>$25</div>
+      <h1>{props.name}</h1>
+      <div className={styles["product-price"]}>{props.price}</div>
       <div className={styles["product-description"]}>
         <p>
-          Iron logo suede hoodie Iron logo suede hoodie Iron logo suede hoodie
-          Iron logo suede hoodie Iron logo suede hoodie
+          {props.description}
         </p>
       </div>
       <div className={styles["product-size"]}>
@@ -36,7 +35,7 @@ const ProductDetailInformation = () => {
       <div className={styles["product-details-footer"]}>
         <div className={styles["product-details-footer-category"]}>
           <span>Category: </span>
-          <span>Hoodie</span>
+          <span>{props.category}</span>
         </div>
         <div className={styles["social-icons"]}>
           <span>Share: </span>

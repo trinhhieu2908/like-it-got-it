@@ -53,7 +53,7 @@ const ProductItem = (props) => {
               add to cart
             </a>
             <div className={styles.vl}></div>
-            <Link to="/shop/detail/p1" className={styles.btnProduct}>
+            <Link to={`/shop/detail/${props.id}`} className={styles.btnProduct}>
               <i className="fas fa-eye"></i>
               view detail
             </Link>
