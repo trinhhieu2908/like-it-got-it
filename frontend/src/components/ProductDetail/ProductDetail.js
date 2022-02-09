@@ -21,6 +21,7 @@ const ProductDetail = () => {
   } = useHttp();
 
   const transformedProductDetail = useCallback((productDetail) => {
+    console.log(productDetail);
     const loadedProductDetail = {
       id: productDetail.id,
       name: productDetail.name,
@@ -30,11 +31,14 @@ const ProductDetail = () => {
       description: productDetail.desc,
       isHot: productDetail.hot === 1,
       sale: productDetail.saleOff,
-      images: productDetail.images,
+      images: productDetail.images,      
+      optionSize: productDetail.productOptions,
     };
 
     setProductDetail(loadedProductDetail);
   }, []);
+
+  // console.log(productDetail);
 
   const fetchProductDetailHandler = useCallback(() => {
     const requestConfigSubmitOrder = {
@@ -70,6 +74,7 @@ const ProductDetail = () => {
               description={productDetail.description}
               price={productDetail.price}
               category={productDetail.category}
+              optionSize={productDetail.optionSize}
             />
           </div>
         </div>

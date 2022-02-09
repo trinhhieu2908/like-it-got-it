@@ -83,6 +83,7 @@
   padding: 1rem 0;
   flex-grow: 1;
   flex-basis: auto;
+  background-color: #fff;
 }
 
 .product-details-action .btnProduct {
@@ -98,6 +99,18 @@
   background-color: #a6c76c;
   color: #fff;
   cursor: pointer;
+}
+
+.btnDisable {
+  color: #616161 !important;
+  border: 1px solid #616161 !important;
+}
+
+.product-details-action .btnDisable:hover {
+  text-decoration: none;
+  background-color: #ffffff !important;
+  color: #fff;
+  cursor: not-allowed !important;
 }
 
 .product-details-footer {
