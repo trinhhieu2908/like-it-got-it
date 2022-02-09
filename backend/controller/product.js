@@ -1,7 +1,7 @@
 const product = require('../models/product')
 async function addProduct(req,res) {
     const body = req.body
-    const priceAfterSale = body.price * body.saleOff/100
+    const priceAfterSale = body.price * ((100 - body.saleOff)/100)
     const pd = await product.addProduct({
         ...body,
         priceAfterSale
