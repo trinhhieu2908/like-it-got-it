@@ -2,6 +2,7 @@
 import styles from './ProductDetailInformation.module.css'
 
 const ProductDetailInformation = (props) => {
+  console.log(props.optionSize)
   return (
     <div className={styles["product-details"]}>
       <h1>{props.name}</h1>

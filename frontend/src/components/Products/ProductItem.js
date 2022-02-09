@@ -49,14 +49,14 @@ const ProductItem = (props) => {
           </a>
           <div className={productActionClasses}>
             {
-              (props.optionSize.length == 0 && (
+              (props.optionSize.length === 1 && (
                 <a className={styles.btnProduct}>
                   <i className="fas fa-cart-plus"></i>
                   add to cart
                 </a>
               ))
             }
-            {props.optionSize.length > 0 && (
+            {props.optionSize.length > 1 && (
               <Link
                 to={`/shop/detail/${props.id}`}
                 className={styles.btnProduct}

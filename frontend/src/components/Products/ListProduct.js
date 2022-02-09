@@ -9,6 +9,8 @@ import styles from "./ListProduct.module.css";
 
 const ListProduct = (props) => {
   const [listProduct, setListProduct] = useState([]);
+  const [skipIndex, setSkipIndex] = useState(1);
+  const [moreProductDisabled, setMoreProductDisabled] = useState(false);
   const {
     isLoading: isLoadingLoadedProduct,
     error: loadedProductHasError,
@@ -17,7 +19,7 @@ const ListProduct = (props) => {
 
   const transformedProductData = useCallback((productData) => {
     const loadedProduct = [];
-
+    // console.log(productData);
     if (productData != null) {
       for (let i = 0; i < productData.length; i++) {
         loadedProduct.push({
@@ -39,12 +41,12 @@ const ListProduct = (props) => {
     setListProduct(loadedProduct);
   }, []);
 
-  console.log(listProduct)
+  // console.log(listProduct)
 
   const fetchProductDataHandler = useCallback(() => {
     let urlFetchProductData;
     if (props.category === null) {
-      urlFetchProductData = "/api/product?skip=0&limit=1";
+      urlFetchProductData = `/api/product?skip=0&limit=1`;
     } else {
       urlFetchProductData = `/api/product/${props.category}`;
     }
@@ -56,6 +58,8 @@ const ListProduct = (props) => {
 
   useEffect(() => {
     fetchProductDataHandler();
+    setSkipIndex(1);
+    setMoreProductDisabled(false);
   }, [fetchProductDataHandler]);
 
   let listProductContent;
@@ -65,7 +69,7 @@ const ListProduct = (props) => {
   }
 
   if (loadedProductHasError) {
-    <p>{loadedProductHasError}</p>;
+    listProductContent = <p>{loadedProductHasError}</p>;
   }
 
   if (!isLoadingLoadedProduct && !loadedProductHasError) {
@@ -87,23 +91,81 @@ const ListProduct = (props) => {
             optionSize={product.optionSize}
           />
         ))}
-        ;
       </div>
     );
   }
 
+  const {
+    isLoading: isLoadingMoreProduct,
+    error: moreProductHasError,
+    sendRequest: fetchProductMoreData,
+  } = useHttp();
+
+  const transformedProductMoreData = useCallback((productData) => {
+    if(productData.length === 0){
+      setMoreProductDisabled(true)
+    }
+    // console.log(moreProductDisabled);
+    const loadedMoreProduct = [];
+    // console.log(productData);
+    if (productData != null) {
+      for (let i = 0; i < productData.length; i++) {
+        loadedMoreProduct.push({
+          id: productData[i].id,
+          name: productData[i].name,
+          price: productData[i].price,
+          category: productData[i].category.name,
+          brand: productData[i].brand.name,
+          description: productData[i].desc,
+          isHot: productData[i].hot === 1,
+          sale: productData[i].saleOff,
+          priceAfterSale: productData[i].priceAfterSale,
+          image1: productData[i].images[0].url,
+          image2: productData[i].images[1].url,
+          optionSize: productData[i].productOptions,
+        });
+      }
+    }
+    setListProduct((prevList) => prevList.concat(loadedMoreProduct));
+  }, []);
+
   const moreProductHandler = () => {
-    console.log("skip 12");
+    // console.log("index skip", skipIndex);
+    let urlFetchProductData;
+    if (props.category === null) {
+      urlFetchProductData = `/api/product?skip=${skipIndex}&limit=1`;
+    } else {
+      urlFetchProductData = `/api/product/${props.category}`;
+    }
+    const requestConfigSubmitOrder = {
+      url: urlFetchProductData,
+    };
+    fetchProductMoreData(requestConfigSubmitOrder, transformedProductMoreData);
+
+    setSkipIndex((prevIndex) => prevIndex + 1);
   };
+
+  let moreProductContent;
+
+  if (isLoadingMoreProduct) {
+    moreProductContent = <LoadingSpinner />;
+  }
+
+  if (moreProductHasError) {
+    moreProductContent = <p>{loadedProductHasError}</p>;
+  }
   return (
     <div className={styles.content}>
       <div className={`container ${styles.containerStyle}`}>
         <div className={styles.products}>{listProductContent}</div>
-        <div className={styles["load-more"]}>
-          <a className={styles["btn-load-more"]} onClick={moreProductHandler}>
-            More Products<i className="fas fa-search-plus"></i>
-          </a>
-        </div>
+        {moreProductContent}
+        {!moreProductDisabled && (
+          <div className={styles["load-more"]}>
+            <a className={styles["btn-load-more"]} onClick={moreProductHandler}>
+              More Products<i className="fas fa-search-plus"></i>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
