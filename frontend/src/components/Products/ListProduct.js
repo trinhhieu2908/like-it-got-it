@@ -17,7 +17,7 @@ const ListProduct = (props) => {
 
   const transformedProductData = useCallback((productData) => {
     const loadedProduct = [];
-    
+
     if (productData != null) {
       for (let i = 0; i < productData.length; i++) {
         loadedProduct.push({
@@ -29,20 +29,22 @@ const ListProduct = (props) => {
           description: productData[i].desc,
           isHot: productData[i].hot === 1,
           sale: productData[i].saleOff,
+          priceAfterSale: productData[i].priceAfterSale,
           image1: productData[i].images[0].url,
           image2: productData[i].images[1].url,
+          optionSize: productData[i].productOptions,
         });
       }
     }
     setListProduct(loadedProduct);
   }, []);
 
-  // console.log(listProduct)
+  console.log(listProduct)
 
   const fetchProductDataHandler = useCallback(() => {
     let urlFetchProductData;
     if (props.category === null) {
-      urlFetchProductData = "/api/product?skip=0";
+      urlFetchProductData = "/api/product?skip=0&limit=1";
     } else {
       urlFetchProductData = `/api/product/${props.category}`;
     }
@@ -79,8 +81,10 @@ const ListProduct = (props) => {
             brand={product.brand}
             isHot={product.isHot}
             sale={product.sale}
+            priceAfterSale={product.priceAfterSale}
             image1={product.image1}
             image2={product.image2}
+            optionSize={product.optionSize}
           />
         ))}
         ;
