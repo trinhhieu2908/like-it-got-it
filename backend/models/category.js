@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const databaseServer = require('../integration/sql')
+
 /*
   Thông tin phân loại cho sản phẩm.  
   Lien ket voi bang Product: 1 - 1,
@@ -89,6 +90,7 @@ async function listCategoryById(idCategory) {
         return [error, null]
     }
 }
+
 module.exports = {
     addCategory,
     updateCategory,

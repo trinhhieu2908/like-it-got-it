@@ -23,6 +23,27 @@ async function addProductOption(req,res) {
         data: pdOp[1]
     })
 }
+async function getProductOptionById(req, res) {
+    const idProduct = req.params.id
+    if(!idProduct) {
+        return res.json({
+                    errorMsg: "Missing idProductOption",
+                    data: null
+        })
+    }
+    const pdOp = await productOption.getProductOptionById(idProduct)
+    if(pdOp[0]){
+        return res.json({
+            errorMsg: pdOp[0].message,
+            data: null
+        })
+    }
+    return res.json({
+        errorMsg: null,
+        data: pdOp[1]
+    })
+}
 module.exports = {
-    addProductOption
+    addProductOption,
+    getProductOptionById
 }
