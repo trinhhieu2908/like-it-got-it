@@ -5,6 +5,7 @@ const {image} = require('./image')
 const {category} = require('./category')
 const {brand} = require('./brand')
 const {productOption} = require('./productOption')
+const {size} = require('./size')
 /*
   Thong tin san pham chung. 
   Lien ket voi bang Image: 1 - N,
@@ -107,7 +108,8 @@ async function listAllProducts(skip, limitNumber) {
           attributes: ['name']
         },
         { model: productOption,
-          order: ['idSize','ASC']
+          order: ['idSize','ASC'],
+          include: size
         }
       ],
       limit,

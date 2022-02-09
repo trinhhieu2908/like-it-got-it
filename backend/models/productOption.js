@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const databaseServer = require('../integration/sql')
+const { size } = require('./size')
 /*
   Thông tin sản phẩm cho từng option khác nhau. Ví dụ màu khác, size khác. 
   Lien ket voi bang Product: N - 1,
@@ -39,7 +40,6 @@ const productOption = databaseServer.getDatabaseInstance().define('productOption
 })
 async function addProductOption (idProduct, idSize) {
   try {
-    console.log("--------------------------------", idProduct, idSize);
     const pd = await productOption.create({
       idProduct,
       idSize,
@@ -49,6 +49,12 @@ async function addProductOption (idProduct, idSize) {
     return [error, null]
   }
 }
+productOption.belongsTo(size, {
+  foreignKey: {
+    name: "idSize",
+    allowNull: true
+  }
+})
 module.exports = {
   productOption,
   addProductOption
