@@ -19,7 +19,7 @@ const ListProduct = (props) => {
 
   const transformedProductData = useCallback((productData) => {
     const loadedProduct = [];
-    // console.log(productData);
+    console.log(productData);
     if (productData != null) {
       for (let i = 0; i < productData.length; i++) {
         loadedProduct.push({

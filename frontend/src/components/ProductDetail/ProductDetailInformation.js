@@ -1,16 +1,45 @@
+import React, { useState } from "react";
 
-import styles from './ProductDetailInformation.module.css'
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart";
+
+import styles from "./ProductDetailInformation.module.css";
 
 const ProductDetailInformation = (props) => {
-  console.log(props.optionSize)
+  const dispatch = useDispatch();
+
+  const [idProductOption, setIdProductOption] = useState("");
+
+  const selectSizeHandler = (event) => {
+    setIdProductOption(event.target.value);
+  };
+
+  let selectValid = false;
+
+  if (idProductOption !== "") {
+    selectValid = true;
+  }
+
+  const classButtonAddToCart = `${styles.btnProduct} ${
+    !selectValid && styles.btnDisable
+  }`;
+
+  const addToCartHandler = (event) => {
+    event.preventDefault();
+    console.log(idProductOption);
+    dispatch(
+      cartActions.addItemToCart({
+        item: { idProductOption: idProductOption, quantity: 1 },
+      })
+    );
+  };
+
   return (
     <div className={styles["product-details"]}>
       <h1>{props.name}</h1>
       <div className={styles["product-price"]}>{props.price}</div>
       <div className={styles["product-description"]}>
-        <p>
-          {props.description}
-        </p>
+        <p>{props.description}</p>
       </div>
       <div className={styles["product-size"]}>
         <label htmlFor="product-size">Size: </label>
@@ -18,20 +47,27 @@ const ProductDetailInformation = (props) => {
           <select
             name="product-size"
             className={`form-control ${styles["select-form"]}`}
+            value={idProductOption}
+            onChange={selectSizeHandler}
           >
             <option value="">Select a size</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
+            {props.optionSize.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.size.name}
+              </option>
+            ))}
           </select>
         </div>
       </div>
       <div className={styles["product-details-action"]}>
-        <a className={styles.btnProduct}>
+        <button
+          disabled={!selectValid}
+          className={classButtonAddToCart}
+          onClick={addToCartHandler}
+        >
           <i className="fas fa-cart-plus"></i>
           ADD TO CART
-        </a>
+        </button>
       </div>
       <div className={styles["product-details-footer"]}>
         <div className={styles["product-details-footer-category"]}>

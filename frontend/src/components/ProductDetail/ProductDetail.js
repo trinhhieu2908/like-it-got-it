@@ -32,7 +32,7 @@ const ProductDetail = () => {
       isHot: productDetail.hot === 1,
       sale: productDetail.saleOff,
       images: productDetail.images,      
-      // optionSize: productDetail.productOptions,
+      optionSize: productDetail.productOptions,
     };
 
     setProductDetail(loadedProductDetail);
