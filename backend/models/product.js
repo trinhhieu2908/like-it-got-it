@@ -170,6 +170,10 @@ async function listProductById(idProduct) {
         { model: category, 
           // as: 'brandName',
           attributes: ['name']
+        },
+        { model: productOption,
+          order: ['idSize','ASC'],
+          include: size
         }
       ]
     }
