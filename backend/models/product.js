@@ -92,8 +92,9 @@ async function addProduct(productInfo) {
     return [error, null]
   }
 }
-async function listAllProducts(skip) {
+async function listAllProducts(skip, limitNumber) {
   const offset = parseInt(skip)
+  const limit = parseInt(limitNumber)
   try {
     const pd = await product.findAll({
       include: [
@@ -109,7 +110,7 @@ async function listAllProducts(skip) {
           order: ['idSize','ASC']
         }
       ],
-      limit: 12,
+      limit,
       offset,
       order: [['updatedAt', 'DESC']]
     })

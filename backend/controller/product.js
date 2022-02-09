@@ -21,7 +21,8 @@ async function addProduct(req,res) {
 
 async function listAllProducts(req,res) {
     const skip = req.query.skip || 0
-    const pd = await product.listAllProducts(skip)
+    const limit = req.query.limit || 5
+    const pd = await product.listAllProducts(skip, limit)
     if(pd[0]){
         return res.json({
             errorMsg: pd[0].message,
