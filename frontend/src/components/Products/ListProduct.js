@@ -17,7 +17,7 @@ const ListProduct = (props) => {
 
   const transformedProductData = useCallback((productData) => {
     const loadedProduct = [];
-
+    
     if (productData != null) {
       for (let i = 0; i < productData.length; i++) {
         loadedProduct.push({
@@ -37,10 +37,12 @@ const ListProduct = (props) => {
     setListProduct(loadedProduct);
   }, []);
 
+  // console.log(listProduct)
+
   const fetchProductDataHandler = useCallback(() => {
     let urlFetchProductData;
     if (props.category === null) {
-      urlFetchProductData = "/api/product";
+      urlFetchProductData = "/api/product?skip=0";
     } else {
       urlFetchProductData = `/api/product/${props.category}`;
     }
