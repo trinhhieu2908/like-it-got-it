@@ -1,5 +1,6 @@
 const order = require('../models/order')
 const productDetail = require('../models/productDetail')
+const {sendMail} = require('../integration/email')
 async function addOrder(req,res) {
     const body = req.body
     const orderBody = {
@@ -18,6 +19,8 @@ async function addOrder(req,res) {
             data: null
         })
     }
+    const result = await sendMail(body.emailCustomer, body.fullName)
+    console.log("result send mail: ",result)
     return res.json({
         errorMsg: null,
         data: {"order": od[1], 

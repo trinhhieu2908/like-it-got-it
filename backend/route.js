@@ -85,8 +85,6 @@ app.post('/api/product-option', productOption.addProductOption)
 app.get('/api/product-option/:id', productOption.getProductOptionById)
 
 app.get('/api/product-category/:id', product.listAllProducts)
-// api send email 
-app.post('/api/email', email.sendMailController)
 
 // api create order
 app.post('/api/order', order.addOrder)

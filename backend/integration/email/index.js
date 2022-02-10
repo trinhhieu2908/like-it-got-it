@@ -9,12 +9,12 @@ var transporter = nodemailer.createTransport({
 });
 
 
-async function sendMail(emailCustomer) {
+async function sendMail(emailCustomer, fullName) {
     var mailOptions = {
         from: 'duongthuychuong@gmail.com',
         to: emailCustomer,
         subject: 'HÓA ĐƠN LIKE IT GOT IT',
-        html: "<p>Cảm ơn bạn đã tham gia chương trình thử nghiệm. Các sản phẩm trên Website hoàn toàn <b>ảo</b></p>"
+        html: `<p>Cảm ơn ${fullName} đã tham gia chương trình thử nghiệm. Các sản phẩm trên Website hoàn toàn <b>ảo</b></p>`
       };
       try {
         const info = await transporter.sendMail(mailOptions)
