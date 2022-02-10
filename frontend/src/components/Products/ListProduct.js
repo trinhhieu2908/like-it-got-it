@@ -7,6 +7,37 @@ import useHttp from "../../hook/use-http";
 
 import styles from "./ListProduct.module.css";
 
+// const productDump = {
+//   id: 1,
+//   name: "ao thun",
+//   price: 20,
+//   category: "tee",
+//   brand: "gucci",
+//   isHot: true,
+//   sale: 10,
+//   priceAfterSale: 18,
+//   image1:
+//     "https://goldievietnam.com/wp-content/uploads/2020/05/IMG_0724-1500-X-2100-800x1120.jpg",
+//   image2:
+//     "https://goldievietnam.com/wp-content/uploads/2020/05/IMG_0731-1500-X-2100-800x1120.jpg",
+//   optionSize: [{ id: "option1", size: { name: "L" } }],
+// };
+// const productDump1 = {
+//   id: 2,
+//   name: "ao thun 2",
+//   price: 30,
+//   category: "tee",
+//   brand: "gucci",
+//   isHot: true,
+//   sale: 1,
+//   priceAfterSale: 30,
+//   image1:
+//     "https://goldievietnam.com/wp-content/uploads/2020/05/IMG_0724-1500-X-2100-800x1120.jpg",
+//   image2:
+//     "https://goldievietnam.com/wp-content/uploads/2020/05/IMG_0731-1500-X-2100-800x1120.jpg",
+//   optionSize: [{ id: "option2", size: { name: "XL" } }],
+// };
+
 const ListProduct = (props) => {
   const [listProduct, setListProduct] = useState([]);
   const [skipIndex, setSkipIndex] = useState(1);
@@ -75,6 +106,32 @@ const ListProduct = (props) => {
   if (!isLoadingLoadedProduct && !loadedProductHasError) {
     listProductContent = (
       <div className="row">
+        {/* <ProductItem
+          id={productDump.id}
+          name={productDump.name}
+          price={productDump.price}
+          category={productDump.category}
+          brand={productDump.brand}
+          isHot={productDump.isHot}
+          sale={productDump.sale}
+          priceAfterSale={productDump.priceAfterSale}
+          image1={productDump.image1}
+          image2={productDump.image2}
+          optionSize={productDump.optionSize}
+        />
+        <ProductItem
+          id={productDump1.id}
+          name={productDump1.name}
+          price={productDump1.price}
+          category={productDump1.category}
+          brand={productDump1.brand}
+          isHot={productDump1.isHot}
+          sale={productDump1.sale}
+          priceAfterSale={productDump1.priceAfterSale}
+          image1={productDump1.image1}
+          image2={productDump1.image2}
+          optionSize={productDump1.optionSize}
+        /> */}
         {listProduct.map((product) => (
           <ProductItem
             key={product.id}
@@ -102,8 +159,8 @@ const ListProduct = (props) => {
   } = useHttp();
 
   const transformedProductMoreData = useCallback((productData) => {
-    if(productData.length === 0){
-      setMoreProductDisabled(true)
+    if (productData.length === 0) {
+      setMoreProductDisabled(true);
     }
     // console.log(moreProductDisabled);
     const loadedMoreProduct = [];

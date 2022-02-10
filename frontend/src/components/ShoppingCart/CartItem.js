@@ -15,10 +15,15 @@ const CartItem = (props) => {
     );
   };
 
-  const RemoveFromCartHandler = (event) => {
+  const removeFromCartHandler = (event) => {
     event.preventDefault();
     dispatch(cartActions.removeItemFromCart({ idProductOption: props.id }));
   };
+
+  const clearItemInCartHandler = (event) => {
+    event.preventDefault();
+    dispatch(cartActions.clearItemInCart({ idProductOption: props.id }));
+  }
 
   return (
     <li className={styles["cart-item"]}>
@@ -29,15 +34,14 @@ const CartItem = (props) => {
           <h3>Size: {props.type}</h3>
           <div className={styles.summary}>
             <span className={styles.price}>{props.price}</span>
-            <button onClick={RemoveFromCartHandler}>−</button>
+            <button onClick={removeFromCartHandler}>−</button>
             <span className={styles.amount}>x {props.quantity}</span>
             <button onClick={addToCartHandler}>+</button>
           </div>
         </div>
       </div>
-
       <div className={styles.actions}>
-        <button>x</button>
+        <button onClick={clearItemInCartHandler}>x</button>
       </div>
     </li>
   );

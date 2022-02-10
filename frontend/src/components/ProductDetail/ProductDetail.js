@@ -10,6 +10,7 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 import styles from "./ProductDetail.module.css";
 
+
 const ProductDetail = () => {
   const params = useParams();
 

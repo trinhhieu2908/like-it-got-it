@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -27,7 +27,17 @@ const ShoppingCart = () => {
 
   const showCart = useSelector((state) => state.cart.showCart);
   const itemCart = useSelector((state) => state.cart.items);
-  
+
+  // useEffect(() => {
+  //   localStorage.setItem("cart", []);
+  // },[])
+
+  // useEffect(() => {
+  //   localStorage.setItem("cart", itemCart);
+  // },[itemCart])
+
+  console.log(itemCart);
+
   return (
     <React.Fragment>
       <div id="myShoppingCart" className={styles.shoppingCart}>
@@ -39,25 +49,18 @@ const ShoppingCart = () => {
         </div>
         <hr></hr>
         <div className={styles.cartContent}>
-          <ul className={styles["cart-items"]}>            
-            <CartItem
-              name="Iron logo suede hoodie"
-              type="L"
-              price="25$"
-              image="https://goldievietnam.com/wp-content/uploads/2020/10/1-5-scaled-800x1000.jpg"
-              quantity="1"
-            />
-            {itemCart.map(item => (
+          <ul className={styles["cart-items"]}>
+            {itemCart.map((item) => (
               <CartItem
-              key={item.idProductOption}
-              id={item.idProductOption}
-              name="UpSideDown DENIM Pants/white"
-              type={item.idProductOption}
-              price="30$"
-              image="https://goldievietnam.com/wp-content/uploads/2021/07/1233212-800x1000.jpg"
-              quantity={item.quantity}
-            />
-            ))}            
+                key={item.idProductOption}
+                id={item.idProductOption}
+                name="UpSideDown DENIM Pants/white"
+                type={item.idProductOption}
+                price="30$"
+                image="https://goldievietnam.com/wp-content/uploads/2021/07/1233212-800x1000.jpg"
+                quantity={item.quantity}
+              />
+            ))}
           </ul>
           <div className={styles.cartTotal}>
             <div className={styles.totalPrice}>
