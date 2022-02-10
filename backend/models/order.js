@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize')
-const databaseServer = require('../integration/sql')
+const databaseServer = require('../integration/sql').getDatabaseInstance()
 /*
   Thông tin giỏ hàng cho từng đơn hàng. 
   Lien ket voi bang ProductDetail: 1 - N,
 */
-const order = databaseServer.getDatabaseInstance().define('order', {
+const order = databaseServer.define('order', {
     /*
       Id tự tăng
     */

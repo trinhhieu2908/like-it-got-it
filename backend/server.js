@@ -8,8 +8,8 @@ async function bootstrap(argument) {
     const testConnect = await databaseServer.connect()
     if(testConnect) {
         //syncDatabase.restartDB(); //chỉ sử dụng khi muốn xóa bảng đang dùng
-        //syncDatabase.syncDB();
-        syncDatabase.deleteDB()
+        syncDatabase.syncDB();
+        //syncDatabase.deleteDB()
         //syncDatabase.alterDB()
         //syncDatabase.syncModel()
         server.listen(PORT, () => {

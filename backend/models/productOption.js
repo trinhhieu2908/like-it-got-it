@@ -53,36 +53,18 @@ async function addProductOption (idProduct, idSize) {
 }
 async function getProductOptionById (id) {
   try {
-    const pd = await productOption.findByPk(id, {
-      // include: {
-      //   model: product,
-      //   as: "ProductOption"
-      // }
-    })
+    const pd = await productOption.findByPk(id)
     return [null, pd]
   } catch (error) {
     return [error, null]
   }
 }
-productOption.belongsTo(product, {
-  foreignKey: {
-    name: "idProduct",
-    allowNull: false
-  }
-})
 productOption.belongsTo(size, {
   foreignKey: {
     name: "idSize",
     allowNull: false
   }
 })
-
-
-// productOption.associate = (models) => {
-//   productOption.belongsTo(models.products, {
-//       foreignKey: "idProduct"
-//   })
-// }
 module.exports = {
   productOption,
   addProductOption,

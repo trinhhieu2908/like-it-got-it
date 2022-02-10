@@ -1,11 +1,10 @@
 const Sequelize = require('sequelize')
-const databaseServer = require('../integration/sql')
-
+const databaseServer = require('../integration/sql').getDatabaseInstance()
 /*
   Thông tin phân loại cho sản phẩm.  
   Lien ket voi bang Product: 1 - 1,
 */
-const category = databaseServer.getDatabaseInstance().define('category', {
+const category = databaseServer.define('category', {
     /*
       Id tự tăng
     */
@@ -90,6 +89,12 @@ async function listCategoryById(idCategory) {
         return [error, null]
     }
 }
+// category.hasOne(product, {
+//   foreignKey: {
+//     name: "idCategory",
+//     allowNull: false
+//   }
+// })
 
 module.exports = {
     addCategory,

@@ -4,7 +4,7 @@ const databaseServer = require('../integration/sql')
 const {image} = require('./image')
 const {category} = require('./category')
 const {brand} = require('./brand')
-const {productOptionTest} = require('./productOption')
+const {productOption} = require('./productOption')
 const {size} = require('./size')
 /*
   Thong tin san pham chung. 
@@ -205,13 +205,12 @@ product.belongsTo(category, {
     allowNull: false
   }
 })
-// product.hasMany(productOptionTest, {
-//   foreignKey: {
-//     name: "idProduct",
-//     allowNull: false,
-//     as : 'ProductOption'
-//   }
-// })
+product.hasMany(productOption, {
+  foreignKey: {
+    name: "idProduct",
+    allowNull: false
+  }
+})
 
 module.exports = {
   product,

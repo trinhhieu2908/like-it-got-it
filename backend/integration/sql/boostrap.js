@@ -1,25 +1,7 @@
 const { Sequelize } = require('sequelize');
 const sequelize = require('./index').getDatabaseInstance();
-//define models
-const Brand = require('../../models/brand')
-const Category = require('../../models/category')
-const Size = require('../../models/size')
-const Product = require('../../models/product')
-const Image = require('../../models/image')
-const ProductOption = require('../../models/productOption')
-const ProductDetail = require('../../models/productDetail')
-const Order = require('../../models/order')
 
-let optionSync = { force: true }
-async function syncModel() {
-    await Brand.brand.sync(optionSync)
-    await Category.category.sync(optionSync)
-    await Size.size.sync(optionSync)
-    await ProductOption.ProductOption.sync(optionSync)
-    await Product.product.sync(optionSync)
-    await Image.image.sync(optionSync)
-    
-}
+
 
 // Get Models
 async function restartDB() {
@@ -43,6 +25,5 @@ module.exports = {
     restartDB,
     syncDB,
     deleteDB,
-    alterDB,
-    syncModel
+    alterDB
 }
