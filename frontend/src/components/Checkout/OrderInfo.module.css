@@ -77,11 +77,19 @@
   font-size: 14px;
   border: 1px solid rgb(177, 176, 176);
 }
+.field .field-input-wrapper .field-input-invalid {
+  border: 1px solid red;
+}
+
+.notice-input-invalid {
+  margin: 0;
+  color: red;
+}
 
 .option-shipping h2 {
   color: #333333;
   font-size: 22px;
-  margin-top: 170px;
+  margin-top: 200px;
 }
 
 .content .content-box {
@@ -177,6 +185,7 @@
 .option-payment-method h2 {
   color: #333333;
   font-size: 22px;
+  margin-top: 20px;
 }
 
 .orderButtonControl {
@@ -200,6 +209,18 @@
   color: rgb(15, 168, 9);
   background-color: transparent;
   border: 1px solid rgb(15, 168, 9);
+}
+
+.btnDisable {
+  color: #616161 !important;
+  border: 1px solid #616161 !important;
+}
+
+.btnDisable:hover {
+  text-decoration: none;
+  background-color: #ffffff !important;
+  color: #fff;
+  cursor: not-allowed !important;
 }
 
 @media (min-width: 750px) {

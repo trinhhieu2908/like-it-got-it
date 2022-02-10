@@ -5,6 +5,7 @@ import $ from "jquery";
 const initialState = {
   currentPage: "home-page",
   showCart: false,
+  notification: null,
 };
 
 function animation() {
@@ -46,6 +47,13 @@ const uiSlice = createSlice({
     },
     closeCart(state) {
       state.showCart = false;
+    },
+    showNotification(state, action) {
+      state.notification = {
+        status: action.payload.status,
+        title: action.payload.title,
+        message: action.payload.message,
+      };
     },
   },
 });

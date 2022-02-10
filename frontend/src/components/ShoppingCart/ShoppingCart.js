@@ -26,8 +26,20 @@ const ShoppingCart = () => {
 
   const showCart = useSelector((state) => state.ui.showCart);
   const itemCart = useSelector((state) => state.cart.items);
+  const itemCartData = useSelector((state) => state.cart.itemsData);
 
-  // console.log(itemCart);
+  // console.log(itemCartData)
+  let totalPrice = 0;
+  itemCart.map(item => {
+    const existedCartItem = itemCartData.find(
+      (itemData) => itemData.idProductOption === item.idProductOption
+    );
+    if(existedCartItem){
+      totalPrice = totalPrice + existedCartItem.price*item.quantity;
+    }
+    return totalPrice;
+  })
+
 
   return (
     <React.Fragment>
@@ -45,10 +57,6 @@ const ShoppingCart = () => {
               <CartItem
                 key={item.idProductOption}
                 id={item.idProductOption}
-                name="UpSideDown DENIM Pants/white"
-                type={item.idProductOption}
-                price="30$"
-                image="https://goldievietnam.com/wp-content/uploads/2021/07/1233212-800x1000.jpg"
                 quantity={item.quantity}
               />
             ))}
@@ -57,7 +65,7 @@ const ShoppingCart = () => {
             <div className={styles.totalPrice}>
               Total Price:
               <span className={styles.totalPriceAmount}>
-                <bdi>1100$</bdi>
+                <bdi>{totalPrice}</bdi>
               </span>
             </div>
           </div>

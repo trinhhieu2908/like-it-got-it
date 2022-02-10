@@ -3,12 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialCartState = {
   items: [],
   totalQuantity: 0,
+  itemsData: [],
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
-  reducers: {    
+  reducers: {
     addItemToCart(state, action) {
       const newItem = action.payload.item;
 
@@ -38,6 +39,9 @@ const cartSlice = createSlice({
         state.items = state.items.filter(
           (item) => item.idProductOption !== action.payload.idProductOption
         );
+        state.itemsData = state.itemsData.filter(
+          (item) => item.idProductOption !== action.payload.idProductOption
+        );
       } else {
         existedCartItem.quantity--;
       }
@@ -47,6 +51,9 @@ const cartSlice = createSlice({
       state.items = state.items.filter(
         (item) => item.idProductOption !== action.payload.idProductOption
       );
+      state.itemsData = state.itemsData.filter(
+        (item) => item.idProductOption !== action.payload.idProductOption
+      );
     },
     clearCart(state) {
       state.items = [];
@@ -54,6 +61,18 @@ const cartSlice = createSlice({
     replaceCartData(state, action) {
       state.items = action.payload.items;
       state.totalQuantity = action.payload.totalQuantity;
+    },
+    loadItemData(state, action) {
+      const newItemData = action.payload.item;
+
+      const existedCartItemData = state.itemsData.find(
+        (item) => item.idProductOption === newItemData.idProductOption
+      );
+
+      if (!existedCartItemData) {
+        // console.log(action.payload.item);
+        state.itemsData.push(newItemData);
+      }
     },
   },
 });

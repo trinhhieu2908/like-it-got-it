@@ -28,7 +28,7 @@ const ProductItem = (props) => {
     console.log(props.optionSize[0].id);
     dispatch(
       cartActions.addItemToCart({
-        item: { idProductOption: props.optionSize[0].id },
+        item: { idProductOption: parseInt(props.optionSize[0].id) },
       })
     );
   };

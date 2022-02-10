@@ -29,7 +29,7 @@ const ProductDetailInformation = (props) => {
     console.log(idProductOption);
     dispatch(
       cartActions.addItemToCart({
-        item: { idProductOption: idProductOption, quantity: 1 },
+        item: { idProductOption: parseInt(idProductOption), quantity: 1 },
       })
     );
   };

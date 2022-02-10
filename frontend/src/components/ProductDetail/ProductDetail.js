@@ -42,10 +42,10 @@ const ProductDetail = () => {
   // console.log(productDetail);
 
   const fetchProductDetailHandler = useCallback(() => {
-    const requestConfigSubmitOrder = {
+    const requestConfig = {
       url: `/api/product/${params.productId}`,
     };
-    fetchProductDetail(requestConfigSubmitOrder, transformedProductDetail);
+    fetchProductDetail(requestConfig, transformedProductDetail);
   }, [fetchProductDetail, transformedProductDetail, params.productId]);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const ProductDetail = () => {
   }
 
   if (productDetailHasError) {
-    <p>{productDetailHasError}</p>;
+    productContent = <p>{productDetailHasError}</p>;
   }
 
   if (!isLoadingProductDetail && !productDetailHasError) {

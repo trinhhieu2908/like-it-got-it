@@ -1,9 +1,84 @@
-import CodIcon from '../../assets/IconCheckoutOption/cod.svg'
-import BankIcon from '../../assets/IconCheckoutOption/bank.svg'
+import React, { useState } from "react";
+
+import { useSelector } from "react-redux";
+
+import CodIcon from "../../assets/IconCheckoutOption/cod.svg";
+import BankIcon from "../../assets/IconCheckoutOption/bank.svg";
+
+import useInput from "../../hook/use-input";
 
 import styles from "./OrderInfo.module.css";
 
-const OrderInfo = () => {
+const isNotEmpty = (value) => value.trim().length !== 0;
+const isEmail = (value) => value.includes("@");
+
+const OrderInfo = (props) => {
+  const itemCart = useSelector((state) => state.cart.items);
+  const itemCartData = useSelector((state) => state.cart.itemsData);
+
+  const itemInOrder = itemCart.map((item) =>{
+    const existedCartItem = itemCartData.find(
+      (itemData) => itemData.idProductOption === item.idProductOption
+    );
+    console.log(existedCartItem);
+  })
+
+  const {
+    value: enteredName,
+    isValid: nameIsValid,
+    hasError: nameIsInvalid,
+    inputChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredEmail,
+    isValid: emailIsValid,
+    hasError: emailIsInvalid,
+    inputChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+  } = useInput(isEmail);
+
+  const [shippingMethod, setShippingMethod] = useState("")
+  const [payMethod, setPayMethod] = useState("")
+
+  let orderIsValid = false;
+
+  if (nameIsValid && emailIsValid && shippingMethod!=="" && payMethod!=="") {
+    orderIsValid = true;
+  }
+
+  const selectShippingMethod = (event) => {
+    setShippingMethod(event.target.value);
+  };
+
+  const selectPayMethod = (event) => {
+    setPayMethod(event.target.value);
+  }
+
+  const orderHandler = () => {
+    console.log("OrderInfo");
+    const CustomerInfo = {
+      name: enteredName,
+      email: enteredEmail,
+      shippingMethod: shippingMethod,
+      payMethod: payMethod,
+    };
+
+    props.onSendOrder(CustomerInfo);
+  };
+
+  const fullNameClasses = `${styles["field-input"]} ${
+    !nameIsInvalid ? "" : styles["field-input-invalid"]
+  }`;
+
+  const emailClasses = `${styles["field-input"]} ${
+    !nameIsInvalid ? "" : styles["field-input-invalid"]
+  }`;
+
+  const classButtonOrder = `${styles.orderButton} ${
+    !orderIsValid && styles.btnDisable
+  }`;
   return (
     <div className={styles.main}>
       <div className={styles.content}>
@@ -18,11 +93,19 @@ const OrderInfo = () => {
                 htmlFor="order-full-name"
               ></label>
               <input
-                className={styles["field-input"]}
+                className={fullNameClasses}
                 id="order-full-name"
                 type="text"
                 placeholder="Full Name"
+                value={enteredName}
+                onChange={nameChangeHandler}
+                onBlur={nameBlurHandler}
               ></input>
+              {nameIsInvalid && (
+                <p className={styles["notice-input-invalid"]}>
+                  Please enter your name.
+                </p>
+              )}
             </div>
           </div>
           <div className={`${styles.field} ${styles["field-two-third"]}`}>
@@ -32,11 +115,19 @@ const OrderInfo = () => {
                 htmlFor="order-email"
               ></label>
               <input
-                className={styles["field-input"]}
+                className={emailClasses}
                 id="order-email"
                 type="email"
                 placeholder="Email"
+                value={enteredEmail}
+                onChange={emailChangeHandler}
+                onBlur={emailBlurHandler}
               ></input>
+              {emailIsInvalid && (
+                <p className={styles["notice-input-invalid"]}>
+                  Please enter a valid email.
+                </p>
+              )}
             </div>
           </div>
           <div className={`${styles.field} ${styles["field-one-third"]}`}>
@@ -56,7 +147,10 @@ const OrderInfo = () => {
           </div>
         </div>
         <div id="option-order">
-          <div className={styles["option-shipping"]}>
+          <div
+            className={styles["option-shipping"]}
+            onChange={selectShippingMethod}
+          >
             <h2>Way of shipping</h2>
             <div className={styles.content}>
               <div className={styles["content-box"]}>
@@ -73,6 +167,7 @@ const OrderInfo = () => {
                           id="ship-at-door"
                           type="radio"
                           name="way-shipping"
+                          value="standard"
                         ></input>
                         <span className={styles["radio-label-primary"]}>
                           Standard shipping
@@ -85,7 +180,7 @@ const OrderInfo = () => {
               </div>
             </div>
           </div>
-          <div className={styles["option-payment-method"]}>
+          <div className={styles["option-payment-method"]} onChange={selectPayMethod}>
             <h2>Payment method</h2>
             <div className={styles.content}>
               <div className={styles["content-box"]}>
@@ -102,10 +197,7 @@ const OrderInfo = () => {
                           name="payment-method"
                           value="cod"
                         ></input>
-                        <img
-                          src={CodIcon}
-                          alt="cod"
-                        />
+                        <img src={CodIcon} alt="cod" />
                         <span className={styles["radio-label-primary"]}>
                           Cash On Delivery (COD)
                         </span>
@@ -126,10 +218,7 @@ const OrderInfo = () => {
                           name="payment-method"
                           value="bank"
                         ></input>
-                        <img
-                          src={BankIcon}
-                          alt="bank"
-                        ></img>
+                        <img src={BankIcon} alt="bank"></img>
                         <span className={styles["radio-label-primary"]}>
                           Pay by Credit Card
                         </span>
@@ -143,7 +232,13 @@ const OrderInfo = () => {
         </div>
       </div>
       <div className={styles.orderButtonControl}>
-        <a className={`btn btn-secondary ${styles.orderButton}`}>Order</a>
+        <button
+          className={`btn btn-secondary ${classButtonOrder}`}
+          onClick={orderHandler}
+          disabled={!orderIsValid}
+        >
+          Order
+        </button>
       </div>
     </div>
   );

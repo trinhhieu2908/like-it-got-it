@@ -32,7 +32,8 @@ const Layout = (props) => {
       initial = false;
       return;
     }
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const cartStore = {items: cart.items, totalQuantity: cart.totalQuantity};
+    localStorage.setItem("cart", JSON.stringify(cartStore));
   }, [cart]);
   return (
     <React.Fragment>
