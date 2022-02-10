@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { pageSelectorActions } from "../../store/pageSelector";
+import { uiActions } from "../../store/ui-slice";
 
 import styles from "./ImageSliderItem.module.css";
 
@@ -9,7 +9,7 @@ const ImageSliderItem = (props) => {
   const dispatch = useDispatch();
 
   const resetSelector = () => {
-    dispatch(pageSelectorActions.changePage("shop-page"));
+    dispatch(uiActions.changePage("shop-page"));
   };
   return (
     <div className={styles["card-wrapper"]}>

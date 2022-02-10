@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { pageSelectorActions } from "../../store/pageSelector";
-import { cartActions } from "../../store/cart";
+import { uiActions } from "../../store/ui-slice";
 
 import Backdrop from "../UI/Backdrop";
 import CartItem from "./CartItem";
@@ -15,28 +14,20 @@ const ShoppingCart = () => {
   function closeCart() {
     document.getElementById("myShoppingCart").style.width = "0";
     document.body.style.backgroundColor = "white";
-    dispatch(cartActions.close());
+    dispatch(uiActions.closeCart());
   }
 
   const dispatch = useDispatch();
 
   const resetSelector = () => {
     closeCart();
-    dispatch(pageSelectorActions.changePage("checkout-page"));
+    dispatch(uiActions.changePage("checkout-page"));
   };
 
-  const showCart = useSelector((state) => state.cart.showCart);
+  const showCart = useSelector((state) => state.ui.showCart);
   const itemCart = useSelector((state) => state.cart.items);
 
-  // useEffect(() => {
-  //   localStorage.setItem("cart", []);
-  // },[])
-
-  // useEffect(() => {
-  //   localStorage.setItem("cart", itemCart);
-  // },[itemCart])
-
-  console.log(itemCart);
+  // console.log(itemCart);
 
   return (
     <React.Fragment>

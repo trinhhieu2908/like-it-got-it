@@ -2,8 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import $ from "jquery";
 
-const initialPageSelectorState = {
+const initialState = {
   currentPage: "home-page",
+  showCart: false,
 };
 
 function animation() {
@@ -25,9 +26,9 @@ function animation() {
   }
 }
 
-const pageSelectorSlice = createSlice({
-  name: "pageSelector",
-  initialState: initialPageSelectorState,
+const uiSlice = createSlice({
+  name: "ui",
+  initialState: initialState,
   reducers: {
     changePage(state, action) {
       state.currentPage = action.payload;
@@ -40,8 +41,14 @@ const pageSelectorSlice = createSlice({
     runAnimation() {
       animation();
     },
+    openCart(state) {
+      state.showCart = true;
+    },
+    closeCart(state) {
+      state.showCart = false;
+    },
   },
 });
 
-export const pageSelectorActions = pageSelectorSlice.actions;
-export default pageSelectorSlice.reducer;
+export const uiActions = uiSlice.actions;
+export default uiSlice.reducer;

@@ -28,7 +28,7 @@ const ProductItem = (props) => {
     console.log(props.optionSize[0].id);
     dispatch(
       cartActions.addItemToCart({
-        item: { idProductOption: props.optionSize[0].id, quantity: 1},
+        item: { idProductOption: props.optionSize[0].id },
       })
     );
   };

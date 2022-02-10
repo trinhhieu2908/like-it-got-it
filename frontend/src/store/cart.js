@@ -2,77 +2,58 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialCartState = {
   items: [],
-  showCart: false,
+  totalQuantity: 0,
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
-  reducers: {
-    open(state) {
-      state.showCart = true;
-    },
-    close(state) {
-      state.showCart = false;
-    },
+  reducers: {    
     addItemToCart(state, action) {
-      const existedCartItemIndex = state.items.findIndex(
-        (item) => item.idProductOption === action.payload.item.idProductOption
+      const newItem = action.payload.item;
+
+      const existedCartItem = state.items.find(
+        (item) => item.idProductOption === newItem.idProductOption
       );
 
-      const existedCartItem = state.items[existedCartItemIndex];
+      state.totalQuantity++;
 
-      let updatedItems;
-
-      if (existedCartItem) {
-        const updatedItem = {
-          ...existedCartItem,
-          quantity: existedCartItem.quantity + 1,
-        };
-        updatedItems = [...state.items];
-        updatedItems[existedCartItemIndex] = updatedItem;
+      if (!existedCartItem) {
+        state.items.push({
+          idProductOption: newItem.idProductOption,
+          quantity: 1,
+        });
       } else {
-        updatedItems = state.items.concat(action.payload.item);
+        existedCartItem.quantity++;
       }
-
-      state.items = updatedItems;
     },
     removeItemFromCart(state, action) {
-      const existedCartItemIndex = state.items.findIndex(
+      const existedCartItem = state.items.find(
         (item) => item.idProductOption === action.payload.idProductOption
       );
 
-      const existedCartItem = state.items[existedCartItemIndex];
-
-      let updatedItems;
+      state.totalQuantity--;
 
       if (existedCartItem.quantity === 1) {
-        updatedItems = state.items.filter(
+        state.items = state.items.filter(
           (item) => item.idProductOption !== action.payload.idProductOption
         );
-        console.log(state.items.length);
       } else {
-        const updatedItem = {
-          ...existedCartItem,
-          quantity: existedCartItem.quantity - 1,
-        };
-        updatedItems = [...state.items];
-        updatedItems[existedCartItemIndex] = updatedItem;
+        existedCartItem.quantity--;
       }
-
-      state.items = updatedItems;
     },
     clearItemInCart(state, action) {
-      let updatedItems;
-
-      updatedItems = state.items.filter(
+      state.totalQuantity = state.totalQuantity - action.payload.quantity;
+      state.items = state.items.filter(
         (item) => item.idProductOption !== action.payload.idProductOption
       );
-
-      state.items = updatedItems;
     },
     clearCart(state) {
       state.items = [];
+    },
+    replaceCartData(state, action) {
+      state.items = action.payload.items;
+      state.totalQuantity = action.payload.totalQuantity;
     },
   },
 });

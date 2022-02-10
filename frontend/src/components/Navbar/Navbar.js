@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import $ from "jquery";
 
 import { useDispatch } from "react-redux";
-import { pageSelectorActions } from "../../store/pageSelector";
+import { uiActions } from "../../store/ui-slice";
 
 import PageOption from "./PageOption";
 import ButtonOption from "./ButtonOption";
@@ -14,14 +14,14 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const resetSelector = (page) => {
-    dispatch(pageSelectorActions.changePage(page.target.id));
+    dispatch(uiActions.changePage(page.target.id));
   };
 
   useEffect(() => {
-    dispatch(pageSelectorActions.runAnimation());
+    dispatch(uiActions.runAnimation());
     $(window).on("resize", function () {
       setTimeout(function () {
-        dispatch(pageSelectorActions.runAnimation());
+        dispatch(uiActions.runAnimation());
       }, 500);
     });
   }, [dispatch]);

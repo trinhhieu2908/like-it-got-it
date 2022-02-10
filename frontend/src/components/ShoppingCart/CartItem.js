@@ -22,8 +22,13 @@ const CartItem = (props) => {
 
   const clearItemInCartHandler = (event) => {
     event.preventDefault();
-    dispatch(cartActions.clearItemInCart({ idProductOption: props.id }));
-  }
+    dispatch(
+      cartActions.clearItemInCart({
+        idProductOption: props.id,
+        quantity: props.quantity,
+      })
+    );
+  };
 
   return (
     <li className={styles["cart-item"]}>

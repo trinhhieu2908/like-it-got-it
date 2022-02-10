@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { searchProductActions } from "../../store/searchProduct";
-import { cartActions } from "../../store/cart";
+import { uiActions } from "../../store/ui-slice";
 
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import SidebarPageOption from "./SidebarPageOption";
@@ -31,12 +32,14 @@ const ButtonOption = () => {
     } else {
       document.getElementById("myShoppingCart").style.width = "45%";
     }
-    dispatch(cartActions.open());
+    dispatch(uiActions.openCart());
   }  
 
   function openSearchProduct() {
     dispatch(searchProductActions.open());
   }
+
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   return (
     <div className={styles["navbar-btn"]}>
@@ -47,7 +50,7 @@ const ButtonOption = () => {
         <i className="fas fa-search"></i>
       </a>
       <a className={`nav-link ${styles["nav-option-btn"]}`} onClick={openCart}>
-        <i className="fas fa-shopping-cart"></i>
+        <i className="fas fa-shopping-cart"></i>{totalQuantity}
       </a>
       <ShoppingCart />
       <Login btnOptionStyle={styles["nav-option-btn"]} />
