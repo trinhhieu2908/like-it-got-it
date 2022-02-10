@@ -1,7 +1,6 @@
 const route = require('./route')
 const databaseServer = require('./integration/sql')
 const syncDatabase = require('./integration/sql/boostrap')
-//const firebase = require('./integration/firebase')
 server = require('http').Server(route);
 const PORT = process.env.PORT || 3005
 async function bootstrap(argument) {
