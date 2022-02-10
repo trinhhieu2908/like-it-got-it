@@ -21,6 +21,14 @@ const productDetail = databaseServer.getDatabaseInstance().define('productDetail
       allowNull: false,
       type: Sequelize.INTEGER
     }, 
+    idOrder: {
+      type: Sequelize.UUID,
+      allowNull: false,
+    },
+    price: {
+      allowNull: false,
+      type: Sequelize.FLOAT
+    },
     subtotal: {
       allowNull: false,
       type: Sequelize.FLOAT
@@ -39,6 +47,15 @@ const productDetail = databaseServer.getDatabaseInstance().define('productDetail
         type: Sequelize.DATE
     }
 })
+async function addProductDetail(productInfo) {
+  try {
+    const pd = await productDetail.bulkCreate(productInfo)
+    return [null, pd]
+  } catch (error) {
+    return [error, null]
+  }
+}
 module.exports = {
-
+  productDetail,
+  addProductDetail
 }

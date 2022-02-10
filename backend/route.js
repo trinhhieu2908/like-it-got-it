@@ -1,7 +1,5 @@
 const express = require("express");
 require('dotenv').config()
-const fs = require('fs')
-var multer = require('multer')
 const home = require('./controller/home');
 const product = require('./controller/product');
 const category = require('./controller/category');
@@ -9,6 +7,7 @@ const brand = require('./controller/brand')
 const size = require('./controller/size')
 const image = require('./controller/image')
 const email = require('./controller/email')
+const order = require('./controller/order')
 const productOption = require('./controller/productOption')
 const {upload} = require('./middleware/upload')
 const app = express()
@@ -86,6 +85,7 @@ app.post('/api/product-option', productOption.addProductOption)
 app.get('/api/product-option/:id', productOption.getProductOptionById)
 
 app.get('/api/product-category/:id', product.listAllProducts)
-// api send email 
-app.post('/api/email', email.sendMailController)
+
+// api create order
+app.post('/api/order', order.addOrder)
 module.exports = app
