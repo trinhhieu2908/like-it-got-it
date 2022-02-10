@@ -57,6 +57,8 @@ const cartSlice = createSlice({
     },
     clearCart(state) {
       state.items = [];
+      state.itemsData = [];
+      state.totalQuantity = 0;
     },
     replaceCartData(state, action) {
       state.items = action.payload.items;

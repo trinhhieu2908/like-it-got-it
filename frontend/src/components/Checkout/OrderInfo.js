@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { useSelector } from "react-redux";
-
 import CodIcon from "../../assets/IconCheckoutOption/cod.svg";
 import BankIcon from "../../assets/IconCheckoutOption/bank.svg";
 
@@ -13,16 +11,6 @@ const isNotEmpty = (value) => value.trim().length !== 0;
 const isEmail = (value) => value.includes("@");
 
 const OrderInfo = (props) => {
-  const itemCart = useSelector((state) => state.cart.items);
-  const itemCartData = useSelector((state) => state.cart.itemsData);
-
-  const itemInOrder = itemCart.map((item) =>{
-    const existedCartItem = itemCartData.find(
-      (itemData) => itemData.idProductOption === item.idProductOption
-    );
-    console.log(existedCartItem);
-  })
-
   const {
     value: enteredName,
     isValid: nameIsValid,
