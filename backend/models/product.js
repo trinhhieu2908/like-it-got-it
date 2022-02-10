@@ -93,9 +93,15 @@ async function addProduct(productInfo) {
     return [error, null]
   }
 }
-async function listAllProducts(skip, limitNumber) {
+async function listAllProducts(skip, limitNumber, categoryId) {
   const offset = parseInt(skip)
   const limit = parseInt(limitNumber)
+  const idcate = parseInt(categoryId)
+  let optionWhere = {}
+  if(idcate) {
+    optionWhere = {"idCategory": idcate}
+  }
+  
   try {
     const pd = await product.findAll({
       include: [
@@ -114,7 +120,8 @@ async function listAllProducts(skip, limitNumber) {
       ],
       limit,
       offset,
-      order: [['updatedAt', 'DESC']]
+      order: [['updatedAt', 'DESC']],
+      where: optionWhere
     })
     return [null, pd]
   } catch (error) {

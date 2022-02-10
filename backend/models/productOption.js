@@ -53,7 +53,7 @@ async function addProductOption (idProduct, idSize) {
 }
 async function getProductOptionById (id) {
   try {
-    const pd = await productOption.findByPk(id)
+    const pd = await productOption.findByPk(id, {include: size})
     return [null, pd]
   } catch (error) {
     return [error, null]
