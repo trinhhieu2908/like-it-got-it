@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const databaseServer = require('../integration/sql')
 const { size } = require('./size')
+const { product } = require('./product')
+
 /*
   Thông tin sản phẩm cho từng option khác nhau. Ví dụ màu khác, size khác. 
   Lien ket voi bang Product: N - 1,
@@ -49,13 +51,22 @@ async function addProductOption (idProduct, idSize) {
     return [error, null]
   }
 }
+async function getProductOptionById (id) {
+  try {
+    const pd = await productOption.findByPk(id)
+    return [null, pd]
+  } catch (error) {
+    return [error, null]
+  }
+}
 productOption.belongsTo(size, {
   foreignKey: {
     name: "idSize",
-    allowNull: true
+    allowNull: false
   }
 })
 module.exports = {
   productOption,
-  addProductOption
+  addProductOption,
+  getProductOptionById
 }

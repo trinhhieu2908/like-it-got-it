@@ -82,7 +82,8 @@ app.get('/api/size/:id', size.listSizeById)
 
 // api add product option
 app.post('/api/product-option', productOption.addProductOption)
-
+// api getProductOptionById
+app.get('/api/product-option/:id', productOption.getProductOptionById)
 // api send email 
 app.post('/api/email', email.sendMailController)
 module.exports = app

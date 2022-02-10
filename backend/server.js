@@ -9,6 +9,9 @@ async function bootstrap(argument) {
     if(testConnect) {
         //syncDatabase.restartDB(); //chỉ sử dụng khi muốn xóa bảng đang dùng
         syncDatabase.syncDB();
+        //syncDatabase.deleteDB()
+        //syncDatabase.alterDB()
+        //syncDatabase.syncModel()
         server.listen(PORT, () => {
             console.log("http App is running at port " + PORT);
         });

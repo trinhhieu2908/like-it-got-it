@@ -1,4 +1,4 @@
-const { Model } = require('sequelize')
+
 const Sequelize = require('sequelize')
 const databaseServer = require('../integration/sql')
 const {image} = require('./image')
@@ -172,7 +172,6 @@ async function listProductById(idProduct) {
           attributes: ['name']
         },
         { model: productOption,
-          order: ['idSize','ASC'],
           include: size
         }
       ]
@@ -191,28 +190,30 @@ async function listProductById(idProduct) {
 product.hasMany(image, {
   foreignKey: {
     name: "idProduct",
-    allowNull: true
+    allowNull: false
   }
 })
 product.belongsTo(brand, {
   foreignKey: {
     name: "idBrand",
-    allowNull: true
+    allowNull: false
   }
 })
 product.belongsTo(category, {
   foreignKey: {
     name: "idCategory",
-    allowNull: true
+    allowNull: false
   }
 })
 product.hasMany(productOption, {
   foreignKey: {
     name: "idProduct",
-    allowNull: true
+    allowNull: false
   }
 })
+
 module.exports = {
+  product,
   addProduct,
   listAllProducts,
   updateProduct,
