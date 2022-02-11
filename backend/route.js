@@ -88,4 +88,7 @@ app.get('/api/product-category/:id', product.listAllProducts)
 
 // api create order
 app.post('/api/order', order.addOrder)
+
+//api search 
+// app.get('/api/')
 module.exports = app

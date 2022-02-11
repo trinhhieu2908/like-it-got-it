@@ -6,6 +6,7 @@ const {category} = require('./category')
 const {brand} = require('./brand')
 const {productOption} = require('./productOption')
 const {size} = require('./size')
+const Op = Sequelize.Op;
 /*
   Thong tin san pham chung. 
   Lien ket voi bang Image: 1 - N,
@@ -93,13 +94,21 @@ async function addProduct(productInfo) {
     return [error, null]
   }
 }
-async function listAllProducts(skip, limitNumber, categoryId) {
+async function listAllProducts(skip, limitNumber, categoryId, search) {
   const offset = parseInt(skip)
   const limit = parseInt(limitNumber)
   const idcate = parseInt(categoryId)
-  let optionWhere = {}
+  const searchKey = search
+  let where = {
+    "name": {[Op.like]: `%${searchKey}%`},
+  }
+  console.log("----------------------------------------------------------------", searchKey)
+  // let optionWhere = {}
   if(idcate) {
-    optionWhere = {"idCategory": idcate}
+    where = {
+      ... where,
+      "idCategory": idcate
+    }
   }
   
   try {
@@ -121,7 +130,7 @@ async function listAllProducts(skip, limitNumber, categoryId) {
       limit,
       offset,
       order: [['updatedAt', 'DESC']],
-      where: optionWhere
+      where
     })
     return [null, pd]
   } catch (error) {
