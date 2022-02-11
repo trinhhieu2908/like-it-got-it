@@ -33,7 +33,7 @@ const ButtonOption = () => {
       document.getElementById("myShoppingCart").style.width = "45%";
     }
     dispatch(uiActions.openCart());
-  }  
+  }
 
   function openSearchProduct() {
     dispatch(searchProductActions.open());
@@ -43,15 +43,18 @@ const ButtonOption = () => {
 
   return (
     <div className={styles["navbar-btn"]}>
-      <a
+      <button
         className={`nav-link ${styles["nav-option-btn"]}`}
         onClick={openSearchProduct}
       >
         <i className="fas fa-search"></i>
-      </a>
-      <a className={`nav-link ${styles["nav-option-btn"]}`} onClick={openCart}>
-        <i className="fas fa-shopping-cart"></i>{totalQuantity}
-      </a>
+      </button>
+      <button className={`nav-link ${styles["nav-option-btn"]}`} onClick={openCart}>
+        <i className="fas fa-shopping-cart"></i>
+        <span className={styles["cart-quantity"]} aria-hidden="true">
+          {totalQuantity}
+        </span>
+      </button>
       <ShoppingCart />
       <Login btnOptionStyle={styles["nav-option-btn"]} />
       <button

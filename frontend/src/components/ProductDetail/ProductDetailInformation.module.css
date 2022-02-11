@@ -14,14 +14,25 @@
 
 .product-price {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-flow: wrap;
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.25;
   margin-bottom: 1.3rem;
   color: #a6c76c;
-  font-size: 1.8rem;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.product-price .product-price-no-sale {
+  text-decoration: line-through;
+  font-size: 1.2rem;
+  color: rgb(236, 93, 93);
+}
+.product-price .product-price-sale {
+  margin-left: 0px;
 }
 
 .product-details .product-description {

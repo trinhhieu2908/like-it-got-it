@@ -46,9 +46,9 @@ const ShoppingCart = () => {
       <div id="myShoppingCart" className={styles.shoppingCart}>
         <div className={styles.header}>
           <h2>Your Cart</h2>
-          <a className={styles.closeCartBtn} onClick={closeCart}>
+          <button className={styles.closeCartBtn} onClick={closeCart}>
             <i className="fas fa-times fa-sm"></i>
-          </a>
+          </button>
         </div>
         <hr></hr>
         <div className={styles.cartContent}>

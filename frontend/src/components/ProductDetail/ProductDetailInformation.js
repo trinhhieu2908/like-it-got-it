@@ -26,7 +26,7 @@ const ProductDetailInformation = (props) => {
 
   const addToCartHandler = (event) => {
     event.preventDefault();
-    console.log(idProductOption);
+    // console.log(idProductOption);
     dispatch(
       cartActions.addItemToCart({
         item: { idProductOption: parseInt(idProductOption), quantity: 1 },
@@ -34,10 +34,20 @@ const ProductDetailInformation = (props) => {
     );
   };
 
+  const priceNoSaleClasses =
+    props.sale !== 0 ? styles["product-price-no-sale"] : "";
+
   return (
     <div className={styles["product-details"]}>
       <h1>{props.name}</h1>
-      <div className={styles["product-price"]}>{props.price}</div>
+      <div className={styles["product-price"]}>
+        <div className={priceNoSaleClasses}>{props.price}$</div>
+        {props.sale !== 0 && (
+          <div className={styles["product-price-sale"]}>
+            {props.priceAfterSale}$
+          </div>
+        )}
+      </div>
       <div className={styles["product-description"]}>
         <p>{props.description}</p>
       </div>
@@ -76,16 +86,22 @@ const ProductDetailInformation = (props) => {
         </div>
         <div className={styles["social-icons"]}>
           <span>Share: </span>
-          <a className={styles["social-icon"]}>
+          <a href="https://www.facebook.com/" className={styles["social-icon"]}>
             <i className="fab fa-facebook-f fa-xs"></i>
           </a>
-          <a className={styles["social-icon"]}>
+          <a
+            href="https://www.instagram.com/"
+            className={styles["social-icon"]}
+          >
             <i className="fab fa-instagram fa-xs"></i>
           </a>
-          <a className={styles["social-icon"]}>
+          <a
+            href="https://www.messenger.com/"
+            className={styles["social-icon"]}
+          >
             <i className="fab fa-facebook-messenger fa-xs"></i>
           </a>
-          <a className={styles["social-icon"]}>
+          <a href="https://twitter.com/" className={styles["social-icon"]}>
             <i className="fab fa-twitter fa-xs"></i>
           </a>
         </div>

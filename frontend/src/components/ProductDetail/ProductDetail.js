@@ -10,7 +10,6 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 import styles from "./ProductDetail.module.css";
 
-
 const ProductDetail = () => {
   const params = useParams();
 
@@ -22,7 +21,7 @@ const ProductDetail = () => {
   } = useHttp();
 
   const transformedProductDetail = useCallback((productDetail) => {
-    console.log(productDetail);
+    // console.log(productDetail);
     const loadedProductDetail = {
       id: productDetail.id,
       name: productDetail.name,
@@ -32,7 +31,8 @@ const ProductDetail = () => {
       description: productDetail.desc,
       isHot: productDetail.hot === 1,
       sale: productDetail.saleOff,
-      images: productDetail.images,      
+      priceAfterSale: productDetail.priceAfterSale,
+      images: productDetail.images,
       optionSize: productDetail.productOptions,
     };
 
@@ -67,13 +67,19 @@ const ProductDetail = () => {
       productContent = (
         <div className={`row ${styles["scale-single"]}`}>
           <div className="col-md-6">
-            <ProductGallery images={productDetail.images} />
+            <ProductGallery
+              images={productDetail.images}
+              isHot={productDetail.isHot}
+              sale={productDetail.sale}
+            />
           </div>
           <div className="col-md-6">
             <ProductDetailInformation
               name={productDetail.name}
               description={productDetail.description}
               price={productDetail.price}
+              sale={productDetail.sale}
+              priceAfterSale={productDetail.priceAfterSale}
               category={productDetail.category}
               optionSize={productDetail.optionSize}
             />

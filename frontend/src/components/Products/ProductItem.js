@@ -25,13 +25,15 @@ const ProductItem = (props) => {
 
   const addToCartHandler = (event) => {
     event.preventDefault();
-    console.log(props.optionSize[0].id);
+    // console.log(props.optionSize[0].id);
     dispatch(
       cartActions.addItemToCart({
         item: { idProductOption: parseInt(props.optionSize[0].id) },
       })
     );
   };
+
+  const priceNoSaleClasses = props.sale !== 0 ? styles.productPriceNoSale : ""
 
   return (
     <div className="col-6 col-md-4 col-lg-4 col-xl-3">
@@ -48,7 +50,7 @@ const ProductItem = (props) => {
               Hot
             </span>
           )}
-          {props.sale && (
+          {props.sale !== 0 && (
             <span
               className={`${styles.productLabel} ${styles.productLabelSale}`}
             >
@@ -77,7 +79,7 @@ const ProductItem = (props) => {
                 to={`/shop/detail/${props.id}`}
                 className={styles.btnProduct}
               >
-                <i className="fas fa-cart-plus"></i>
+                <i className="fas fa-list"></i>
                 select option
               </Link>
             )}
@@ -94,7 +96,14 @@ const ProductItem = (props) => {
           </div>
           <div className={styles.productTitle}>{props.name}</div>
           <div className={styles.productPrice}>
-            {props.price} vnd | {props.priceAfterSale} vnd
+            <div className={priceNoSaleClasses}>
+              {props.price}$
+            </div>
+            {props.sale !== 0 && (
+              <div className={styles.productPriceSale}>
+                {props.priceAfterSale}$
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ const ImageSliderItem = (props) => {
           <img src={props.image} alt="product" />
         </div>
         <div className={styles["card-actions"]}>
-          <Link to={`/shop/products?category=${props.category}`} onClick={resetSelector}>SHOP {props.category}</Link>
+          <Link to={`/shop/products?category=${props.category}`} onClick={resetSelector}>SHOP {props.name}</Link>
         </div>
       </div>
     </div>

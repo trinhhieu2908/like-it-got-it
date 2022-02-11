@@ -14,8 +14,14 @@
 .btn-closeSideNav {
   margin-left: 5%;
   margin-top: 5px;
+  cursor: pointer;
+}
+
+.btn-closeSideNav button {
   color: rgb(240, 97, 97);
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
 #main {

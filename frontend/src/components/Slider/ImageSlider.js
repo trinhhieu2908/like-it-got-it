@@ -26,23 +26,28 @@ const ImageSlider = () => {
       <Slider {...settings}>
         <ImageSliderItem
           image="https://assets.vogue.com/photos/602454deb04179f82a56d00e/16:9/w_1280,c_limit/00_social.jpg"
-          category="hoodie"
+          name="hoodie"
+          category="1"
         />
         <ImageSliderItem
           image="https://m.media-amazon.com/images/S/aplus-media/sota/b7fc7746-e726-4862-a580-fdd9ef5a6f6e.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
-          category="bags"
+          name="bags"
+          category="2"
         />
         <ImageSliderItem
           image="https://fashionista.com/.image/t_share/MTQ4MTI3OTEyOTM4MTg2MjYy/hp-paris-fashion-week-mens-spring-2018-street-style.jpg"
-          category="pants"
+          name="pants"
+          category="3"
         />
         <ImageSliderItem
           image="https://bizweb.dktcdn.net/100/413/756/collections/jordan-2.jpg?v=1617462460240"
-          category="shoes"
+          name="shoes"
+          category="4"
         />
         <ImageSliderItem
           image="https://images.ctfassets.net/3s5io6mnxfqz/3q6QfJJZgqTljZhxbwliRz/ecde7628474fb6613b460adedf02f64f/AdobeStock_185261221.jpeg?fm=jpg&w=900&fl=progressive"
-          category="accessories"
+          name="accessories"
+          category="5"
         />        
       </Slider>
     </div>

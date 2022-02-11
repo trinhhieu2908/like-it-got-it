@@ -1,5 +1,3 @@
-import img from "../../assets/Background/backgroundAbout.jpg";
-
 import NavLogo from "../Navbar/NavLogo";
 
 import styles from "./AboutContent.module.css";
@@ -7,16 +5,18 @@ import styles from "./AboutContent.module.css";
 const AboutContent = () => {
   return (
     <div className={`container ${styles.content}`}>
-      <div className={styles.image}>
-        <img
-          src="https://p.favim.com/orig/2019/03/08/7-rings-i-got-it-i-see-it-Favim.com-6987692.jpg"
-          alt="about-content"
-        />
-      </div>
       <div className={styles.about}>
         <div className={styles.header}>
           <NavLogo />
         </div>
+        <br></br>
+        <div className={styles.image}>
+          <img
+            src="https://p.favim.com/orig/2019/03/08/7-rings-i-got-it-i-see-it-Favim.com-6987692.jpg"
+            alt="about-content"
+          />
+        </div>
+
         <div className={styles.body}>
           <p>This website is created for entertainment purposes.</p>
           <p>

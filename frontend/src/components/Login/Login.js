@@ -19,9 +19,9 @@ const Login = (props) => {
   }
   return (
     <div className={styles.dropdown}>
-      <a className={`nav-link ${props.btnOptionStyle}`} onClick={openLogin}>
+      <button className={`nav-link ${props.btnOptionStyle}`} onClick={openLogin}>
         <i className="fas fa-user"></i>
-      </a>
+      </button>
       <div className={classDropDown}>
         <FormLogin />
         {loginOpen && <Backdrop onClick={closeLogin} />}

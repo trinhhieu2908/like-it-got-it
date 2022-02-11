@@ -9,6 +9,7 @@
   color: rgb(255, 255, 255);
   flex-direction: row;
   margin-left: 10px;
+  border: none;
 }
 .nav-option-btn i {
   margin-left: 10px;
@@ -21,15 +22,30 @@
   cursor: pointer;
 }
 
+.cart-quantity {
+  background: rgba(108, 226, 104, 0.8);
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  font-size: 10px;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-radius: 1.25rem;
+  font-family: Roboto;
+  margin-left: -0.175rem;
+}
+
 @media (max-width: 550px) {
   .navbar-btn {
     margin-right: -3%;
   }
-  .nav-option-btn {    
+  .nav-option-btn {
     margin-left: 5px;
   }
   .nav-option-btn i {
     margin-left: -3px;
-    margin-right: -3px
+    margin-right: -3px;
   }
 }

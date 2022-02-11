@@ -1,45 +1,36 @@
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+
+import useHttp from "../../hook/use-http";
 
 import backgroundImage from "../../assets/Background/backgroundCategory.gif";
 
 import styles from "./MostPopular.module.css";
 
-const loadedCategory = [
-  {
-    id: 1,
-    name: "Tee",
-  },
-  {
-    id: 2,
-    name: "Shirts",
-  },
-  {
-    id: 3,
-    name: "Pants",
-  },
-  {
-    id: 4,
-    name: "Hoodie",
-  },
-  {
-    id: 5,
-    name: "Jacket",
-  },
-  {
-    id: 6,
-    name: "Shoes",
-  },
-  {
-    id: 7,
-    name: "Bags",
-  },
-  {
-    id: 8,
-    name: "Accessories",
-  },
-];
 
 const MostPopular = () => {
+  const [listCategory, setListCategory] = useState([]);
+
+  const {
+    // isLoading: isLoadingCategory,
+    // error: loadedCategoryHasError,
+    sendRequest: fetchCategory,
+  } = useHttp();
+
+  const transformedListCategory = useCallback((listData) => {
+    setListCategory(listData);
+  }, []);
+
+  const fetchCategoryHandler = useCallback(() => {
+    const requestConfig = {
+      url: "/api/category",
+    };
+    fetchCategory(requestConfig, transformedListCategory);
+  }, [fetchCategory, transformedListCategory]);
+
+  useEffect(() => {
+    fetchCategoryHandler();
+  }, [fetchCategoryHandler]);
   return (
     <div className={styles.banner}>
       <div className={styles.bannerImage}>
@@ -47,9 +38,14 @@ const MostPopular = () => {
         <div className={styles.bannerList}>
           <h2>PRODUCTS</h2>
           <ul>
-            {loadedCategory.map((category) => (
+            {listCategory.map((category) => (
               <li key={category.id}>
-                <Link to={`/shop/products?category=${category.name}`} className={styles.button}>{category.name}</Link>
+                <Link
+                  to={`/shop/products?category=${category.id}`}
+                  className={styles.button}
+                >
+                  {category.name}
+                </Link>
               </li>
             ))}
           </ul>

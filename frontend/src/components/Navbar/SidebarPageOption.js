@@ -10,10 +10,10 @@ const SidebarPageOption = (props) => {
           <PageOption onClose={props.onClose} />
         </ul>
       </div>
-      <div className={styles["btn-closeSideNav"]}>
-        <a onClick={props.onClose}>
+      <div className={styles["btn-closeSideNav"]} onClick={props.onClose}>
+        <button>
           <i className="fas fa-times"></i>Close
-        </a>
+        </button>
       </div>
     </div>
   );
