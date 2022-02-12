@@ -6,16 +6,15 @@ import LoadingSpinner from "../src/components/UI/LoadingSpinner";
 
 const Home = React.lazy(() => import("./pages/Home/Home"));
 const Shop = React.lazy(() => import("./pages/Shop/Shop"));
-const Checkout = React.lazy(() => import("./pages/Checkout/Checkout"))
-const About = React.lazy(() => import("./pages/About/About"))
-const Contact = React.lazy(() => import("./pages/Contact/Contact"))
+const Checkout = React.lazy(() => import("./pages/Checkout/Checkout"));
+const About = React.lazy(() => import("./pages/About/About"));
+const Contact = React.lazy(() => import("./pages/Contact/Contact"));
+const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
 
 const App = () => {
   return (
     <Layout>
-      <Suspense fallback={
-          <LoadingSpinner />
-        }>
+      <Suspense fallback={<LoadingSpinner />}>
         <Switch>
           <Route path="/" exact>
             <Redirect to="/shop" />
@@ -34,6 +33,9 @@ const App = () => {
           </Route>
           <Route path="/contact" exact>
             <Contact />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </Suspense>

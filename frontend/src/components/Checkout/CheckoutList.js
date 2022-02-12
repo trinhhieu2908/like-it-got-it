@@ -48,7 +48,7 @@ const CheckoutList = () => {
           <div className={styles.totalPrice}>
             Subtotal:
             <span className={styles.totalPriceAmount}>
-              <bdi>{totalPrice}</bdi>
+              <bdi>{totalPrice} $</bdi>
             </span>
           </div>
           <div className={styles.totalShipping}>
@@ -63,7 +63,7 @@ const CheckoutList = () => {
           <div className={styles.totalPrice}>
             Total:
             <span className={styles.totalPriceAmount}>
-              <bdi>{totalPrice}</bdi>
+              <bdi>{totalPrice} $</bdi>
             </span>
           </div>
         </div>

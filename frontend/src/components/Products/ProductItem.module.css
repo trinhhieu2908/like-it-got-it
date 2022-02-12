@@ -181,25 +181,29 @@
 
 @media screen and (max-width: 1200px) {  
   .productImage img {
-    width: 75%;
+    /* width: 75%; */
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 992px) {  
   .productImage img {
-    width: 90%;
+    /* width: 90%; */
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 767px) {  
   .productImage img {
-    width: 70%;
+    /* width: 70%; */
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 632px) {  
   .productImage img {
-    width: 90%;
+    /* width: 90%; */
+    width: 100%;
   }
 }
 

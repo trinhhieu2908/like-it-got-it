@@ -65,7 +65,7 @@ const ShoppingCart = () => {
             <div className={styles.totalPrice}>
               Total Price:
               <span className={styles.totalPriceAmount}>
-                <bdi>{totalPrice}</bdi>
+                <bdi>{totalPrice} $</bdi>
               </span>
             </div>
           </div>

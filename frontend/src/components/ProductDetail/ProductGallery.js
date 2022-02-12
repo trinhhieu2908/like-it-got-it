@@ -89,7 +89,7 @@ const ProductGallery = (props) => {
               Hot
             </span>
           )}
-          {props.sale && (
+          {props.sale !== 0 && (
             <span
               className={`${styles.productLabel} ${styles.productLabelSale}`}
             >

@@ -58,6 +58,7 @@
   right: 0;
   bottom: 0;
   cursor: zoom-in;
+  background-color: #e7e7e7;
 }
 
 .image-content:hover {

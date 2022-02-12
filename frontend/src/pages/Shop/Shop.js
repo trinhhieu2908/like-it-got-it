@@ -14,6 +14,8 @@ const Shop = () => {
   const category = queryParams.get("category");
   const search = queryParams.get("search");
 
+  const NotFound = React.lazy(() => import("../../pages/NotFound/NotFound"));
+
   return (
     <React.Fragment>
       <MostPopular />
@@ -27,6 +29,9 @@ const Shop = () => {
         </Route>
         <Route path="/shop/detail/:productId" exact>
           <ProductDetail />
+        </Route>
+        <Route path="/shop/*">
+          <NotFound />
         </Route>
       </Switch>
     </React.Fragment>

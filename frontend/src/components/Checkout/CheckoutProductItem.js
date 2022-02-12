@@ -20,11 +20,11 @@ const CheckoutProductItem = (props) => {
       <td className={styles["product-info"]}>
         <span className={styles["product-info-name"]}>{props.name}</span>
         <span className={styles["product-info-type"]}>Size: {props.type}</span>
-        <span className={styles["product-info-type"]}>{props.price}</span>
+        <span className={styles["product-info-type"]}>{props.price}$</span>
       </td>
       <td className={styles["product-price"]}>
         <span className={styles["product-price-number"]}>
-          {props.totalPrice}
+          {props.totalPrice}$
         </span>
       </td>
     </tr>
