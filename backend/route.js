@@ -8,6 +8,7 @@ const size = require('./controller/size')
 const image = require('./controller/image')
 const email = require('./controller/email')
 const order = require('./controller/order')
+const user = require('./controller/user')
 const productOption = require('./controller/productOption')
 const {upload} = require('./middleware/upload')
 const app = express()
@@ -89,6 +90,9 @@ app.get('/api/product-category/:id', product.listAllProducts)
 // api create order
 app.post('/api/order', order.addOrder)
 
-//api search 
-// app.get('/api/')
+//api add user 
+app.post('/api/user/register', user.addUser)
+//api login user 
+app.post('/api/user/login', user.login)
+
 module.exports = app
