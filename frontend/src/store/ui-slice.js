@@ -32,13 +32,13 @@ const uiSlice = createSlice({
   initialState: initialState,
   reducers: {
     changePage(state, action) {
-      if(action.payload !== ""){
+      if (action.payload !== "") {
         state.currentPage = action.payload;
-      $("#navbarPageContent ul li a").removeClass("active");
-      $(`#${action.payload}`).addClass("active");
-      setTimeout(function () {
-        animation();
-      }, 200);
+        $("#navbarPageContent ul li a").removeClass("active");
+        $(`#${action.payload}`).addClass("active");
+        setTimeout(function () {
+          animation();
+        }, 200);
       }
     },
     runAnimation() {
