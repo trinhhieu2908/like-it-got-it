@@ -129,7 +129,11 @@ async function listAllProducts(skip, limitNumber, categoryId, search) {
       ],
       limit,
       offset,
-      order: [['updatedAt', 'DESC']],
+      order: [['updatedAt', 'DESC'], 
+              [{ model: image },
+                'id', 'ASC'
+              ]
+      ],
       where
     })
     return [null, pd]
