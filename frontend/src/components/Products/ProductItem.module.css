@@ -173,6 +173,7 @@
 
 .productPrice .productPriceNoSale {
   text-decoration: line-through;
+  color: rgb(167, 167, 167);
 }
 .productPrice .productPriceSale {
   margin-left: 3px;

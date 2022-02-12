@@ -1,34 +1,18 @@
 import React from "react";
 
-import ImageSlider from "../../components/Slider/ImageSlider"
+import ImageSlider from "../../components/Slider/ImageSlider";
+import ImageContent from "../../components/Home/ImageContent";
+
+import homepageImage1 from "../../assets/Background/homepageImage1.png";
+import homepageImage2 from "../../assets/Background/homepageImage2.png";
 
 const Home = () => {
-  
-  // const [homepageData, setHomepageData] = useState({});
-
-  // const fetchHomepageData = async () => {
-  //   try {
-  //     const response = await fetch("/home", {
-  //       method: "GET",
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     const data = await response.json();
-  //     setHomepageData(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchHomepageData();
-  // }, []);
-
-  // console.log(homepageData);
-
-  
-
   return (
-    <ImageSlider />
+    <React.Fragment>
+      <ImageSlider />
+      <ImageContent image={homepageImage1} />
+      <ImageContent image={homepageImage2} />
+    </React.Fragment>
   );
 };
 export default Home;

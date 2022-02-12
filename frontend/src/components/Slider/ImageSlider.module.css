@@ -16,3 +16,15 @@
   text-align: center;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 678px) {
+  .bodySlider {
+    height: 65vh;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .bodySlider {
+    height: 52vh;
+  }
+}

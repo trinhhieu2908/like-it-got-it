@@ -2,6 +2,8 @@ import NavLogo from "../Navbar/NavLogo";
 
 import styles from "./AboutContent.module.css";
 
+import backgroundAbout from "../../assets/Background/backgroundAbout.png";
+
 const AboutContent = () => {
   return (
     <div className={`container ${styles.content}`}>
@@ -12,7 +14,7 @@ const AboutContent = () => {
         <br></br>
         <div className={styles.image}>
           <img
-            src="https://p.favim.com/orig/2019/03/08/7-rings-i-got-it-i-see-it-Favim.com-6987692.jpg"
+            src={backgroundAbout}
             alt="about-content"
           />
         </div>

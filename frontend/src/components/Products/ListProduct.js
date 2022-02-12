@@ -7,7 +7,7 @@ import useHttp from "../../hook/use-http";
 
 import styles from "./ListProduct.module.css";
 
-const limitLoad = 3
+const limitLoad = 3;
 
 const ListProduct = (props) => {
   const [listProduct, setListProduct] = useState([]);
@@ -52,7 +52,7 @@ const ListProduct = (props) => {
     } else if (props.category && props.search === null) {
       urlFetchProductData = `/api/product-category/${props.category}?skip=0&limit=${limitLoad}`;
     } else if (props.search && props.category === null) {
-      console.log(props.search);
+      urlFetchProductData = `/api/product?search=${props.search}&skip=0&limit=${limitLoad}`;
     }
     const requestConfigSubmitOrder = {
       url: urlFetchProductData,
@@ -138,11 +138,17 @@ const ListProduct = (props) => {
     // console.log("index skip", skipIndex);
     let urlFetchProductData;
     if (props.category === null && props.search === null) {
-      urlFetchProductData = `/api/product?skip=${skipIndex*limitLoad}&limit=${limitLoad}`;
+      urlFetchProductData = `/api/product?skip=${
+        skipIndex * limitLoad
+      }&limit=${limitLoad}`;
     } else if (props.category && props.search === null) {
-      urlFetchProductData = `/api/product-category/${props.category}?skip=${skipIndex*limitLoad}&limit=${limitLoad}`;
+      urlFetchProductData = `/api/product-category/${props.category}?skip=${
+        skipIndex * limitLoad
+      }&limit=${limitLoad}`;
     } else if (props.search && props.category === null) {
-      console.log(props.search);
+      urlFetchProductData = `/api/product?search=${props.search}&skip=${
+        skipIndex * limitLoad
+      }&limit=${limitLoad}`;
     }
     const requestConfigSubmitOrder = {
       url: urlFetchProductData,
@@ -168,7 +174,10 @@ const ListProduct = (props) => {
         {moreProductContent}
         {!moreProductDisabled && (
           <div className={styles["load-more"]}>
-            <button className={styles["btn-load-more"]} onClick={moreProductHandler}>
+            <button
+              className={styles["btn-load-more"]}
+              onClick={moreProductHandler}
+            >
               More Products<i className="fas fa-search-plus"></i>
             </button>
           </div>

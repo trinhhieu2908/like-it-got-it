@@ -1,5 +1,6 @@
 .banner {
   position: relative;
+  animation: ease-appear 1s ease-out forwards;
 }
 
 .bannerImage img {
@@ -36,7 +37,7 @@
 }
 
 .bannerList ul {
-  margin-left: 0;  
+  margin-left: 0;
   margin-top: -30px;
 }
 
@@ -99,8 +100,8 @@
   .bannerImage img {
     width: 98.6%;
   }
-  
-  .bannerList ul {  
+
+  .bannerList ul {
     margin-top: -10px;
   }
 }
@@ -114,5 +115,17 @@
   }
   .bannerImage img {
     width: 97.6%;
+  }
+}
+
+@keyframes ease-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
