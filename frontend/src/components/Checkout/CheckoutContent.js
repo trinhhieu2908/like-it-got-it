@@ -64,7 +64,7 @@ const CheckoutContent = () => {
       fullName: customerInfo.name,
       productDetail: itemsInOrder,
     };
-    console.log(order);
+    // console.log(order);
     const requestConfigSubmitOrder = {
       url: "/api/order",
       method: "POST",

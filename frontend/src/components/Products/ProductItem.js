@@ -35,8 +35,10 @@ const ProductItem = (props) => {
 
   const priceNoSaleClasses = props.sale !== 0 ? styles.productPriceNoSale : ""
 
+  const classContent = `col-6 col-md-4 col-lg-4 col-xl-3 ${styles.animation}`;
+
   return (
-    <div className="col-6 col-md-4 col-lg-4 col-xl-3">
+    <div className={classContent}>
       <div
         className={styles.product}
         onMouseOver={hoverHandler}

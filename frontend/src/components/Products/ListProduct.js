@@ -7,7 +7,7 @@ import useHttp from "../../hook/use-http";
 
 import styles from "./ListProduct.module.css";
 
-const limitLoad = 3;
+const limitLoad = 12;
 
 const ListProduct = (props) => {
   const [listProduct, setListProduct] = useState([]);

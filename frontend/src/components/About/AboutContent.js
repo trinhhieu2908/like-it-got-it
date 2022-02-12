@@ -13,14 +13,12 @@ const AboutContent = () => {
         </div>
         <br></br>
         <div className={styles.image}>
-          <img
-            src={backgroundAbout}
-            alt="about-content"
-          />
+          <img src={backgroundAbout} alt="about-content" />
         </div>
 
         <div className={styles.body}>
           <p>This website is created for entertainment purposes.</p>
+          <p>First, Dear Customer</p>
           <p>
             If you are interested in fashion or clothes, let visit us to choose
             your outfit. There is no selling or buying here, we only create this
@@ -28,6 +26,11 @@ const AboutContent = () => {
             hobby but don't want to spend money. We also make this for people
             who want to relax when boring, just visit us click some product and
             checkout for getting an email thank you.
+          </p>
+          <p>Second, Dear all brand we use the products</p>
+          <p>
+            We are using these product for no purposes, just a dummy project. We
+            don't use your products for selling. Thank you for your support.
           </p>
           <hr></hr>
           <br></br>

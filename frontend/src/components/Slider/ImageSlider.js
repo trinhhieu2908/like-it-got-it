@@ -30,11 +30,11 @@ const ImageSlider = () => {
     <div className={`carousel ${styles.bodySlider}`}>
       <h1 className={styles["slider-title"]}>Popular</h1>
       <Slider {...settings}>
-        <ImageSliderItem image={HoodieBanner} name="hoodie" category="1" />
-        <ImageSliderItem image={TeeBanner} name="Tees" category="5" />
+        <ImageSliderItem image={HoodieBanner} name="hoodie" category="5" />
+        <ImageSliderItem image={TeeBanner} name="Tees" category="1" />
         <ImageSliderItem image={PantsBanner} name="pants" category="3" />
-        <ImageSliderItem image={ShoesBanner} name="shoes" category="4" />
-        <ImageSliderItem image={BagsBanner} name="accessories" category="2" />
+        <ImageSliderItem image={ShoesBanner} name="shoes" category="7" />
+        <ImageSliderItem image={BagsBanner} name="accessories" category="8" />
       </Slider>
     </div>
   );

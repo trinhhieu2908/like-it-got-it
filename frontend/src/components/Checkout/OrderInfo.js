@@ -45,7 +45,7 @@ const OrderInfo = (props) => {
   }
 
   const orderHandler = () => {
-    console.log("OrderInfo");
+    // console.log("OrderInfo");
     const CustomerInfo = {
       name: enteredName,
       email: enteredEmail,
