@@ -40,6 +40,10 @@
   margin-top: 30px;
 }
 
+.productLabel.productLabelSaleNoHot {
+  margin-top: 0 !important;
+}
+
 .zoom-image {
   position: relative !important;
   overflow: hidden !important;

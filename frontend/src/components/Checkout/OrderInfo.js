@@ -27,12 +27,17 @@ const OrderInfo = (props) => {
     inputBlurHandler: emailBlurHandler,
   } = useInput(isEmail);
 
-  const [shippingMethod, setShippingMethod] = useState("")
-  const [payMethod, setPayMethod] = useState("")
+  const [shippingMethod, setShippingMethod] = useState("");
+  const [payMethod, setPayMethod] = useState("");
 
   let orderIsValid = false;
 
-  if (nameIsValid && emailIsValid && shippingMethod!=="" && payMethod!=="") {
+  if (
+    nameIsValid &&
+    emailIsValid &&
+    shippingMethod !== "" &&
+    payMethod !== ""
+  ) {
     orderIsValid = true;
   }
 
@@ -42,7 +47,7 @@ const OrderInfo = (props) => {
 
   const selectPayMethod = (event) => {
     setPayMethod(event.target.value);
-  }
+  };
 
   const orderHandler = () => {
     // console.log("OrderInfo");
@@ -129,7 +134,7 @@ const OrderInfo = (props) => {
                 className={styles["field-input"]}
                 id="order-phone"
                 type="text"
-                placeholder="Phone Number"
+                placeholder="Phone Number (NO NEED)"
               ></input>
             </div>
           </div>
@@ -168,7 +173,10 @@ const OrderInfo = (props) => {
               </div>
             </div>
           </div>
-          <div className={styles["option-payment-method"]} onChange={selectPayMethod}>
+          <div
+            className={styles["option-payment-method"]}
+            onChange={selectPayMethod}
+          >
             <h2>Payment method</h2>
             <div className={styles.content}>
               <div className={styles["content-box"]}>

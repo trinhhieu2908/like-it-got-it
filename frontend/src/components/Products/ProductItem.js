@@ -36,6 +36,7 @@ const ProductItem = (props) => {
   const priceNoSaleClasses = props.sale !== 0 ? styles.productPriceNoSale : ""
 
   const classContent = `col-6 col-md-4 col-lg-4 col-xl-3 ${styles.animation}`;
+  const classSaleLabel = `${styles.productLabel} ${styles.productLabelSale} ${props.isHot ? "" : styles.productLabelSaleNoHot}`
 
   return (
     <div className={classContent}>
@@ -54,7 +55,7 @@ const ProductItem = (props) => {
           )}
           {props.sale !== 0 && (
             <span
-              className={`${styles.productLabel} ${styles.productLabelSale}`}
+              className={classSaleLabel}
             >
               Sale {props.sale} %
             </span>

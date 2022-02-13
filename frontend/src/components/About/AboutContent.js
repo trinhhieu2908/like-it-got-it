@@ -18,19 +18,21 @@ const AboutContent = () => {
 
         <div className={styles.body}>
           <p>This website is created for entertainment purposes.</p>
-          <p>First, Dear Customer</p>
+          <p>Firstly, Dear all brand we use the products</p>
+          <p>
+            We are using these products for non-profit purposes, just a dummy
+            project. Thank you for your support. If you have any problem, please
+            contact us.
+          </p>
+          <p>Secondly, Dear Customer</p>
           <p>
             If you are interested in fashion or clothes, let visit us to choose
             your outfit. There is no selling or buying here, we only create this
             website for fun and for people who want to satisfy their shopping
             hobby but don't want to spend money. We also make this for people
             who want to relax when boring, just visit us click some product and
-            checkout for getting an email thank you.
-          </p>
-          <p>Second, Dear all brand we use the products</p>
-          <p>
-            We are using these product for no purposes, just a dummy project. We
-            don't use your products for selling. Thank you for your support.
+            checkout.An email thank you will be send to your email, please
+            check. Have a nice day.
           </p>
           <hr></hr>
           <br></br>

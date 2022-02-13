@@ -15,7 +15,7 @@ import ListProduct from "../../components/Products/ListProduct";
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
-const limitLoad = 3;
+const limitLoad = 12;
 
 const Shop = () => {
   const location = useLocation();
