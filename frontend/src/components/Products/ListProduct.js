@@ -65,8 +65,6 @@ const ListProduct = (props) => {
   );
 
   const moreProductHandler = () => {
-    console.log("index skip", skipIndex);
-    console.log(props.listProducts)
     let urlFetchProductData;
     if (props.category === null && props.search === null) {
       urlFetchProductData = `/api/product?skip=${
