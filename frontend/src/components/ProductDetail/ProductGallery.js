@@ -78,6 +78,8 @@ const ProductGallery = (props) => {
     isHold ? styles["image-magnifying-hold"] : ""
   }`;
 
+  const classSaleLabel = `${styles.productLabel} ${styles.productLabelSale} ${props.isHot ? "" : styles.productLabelSaleNoHot}`
+
   return (
     <div className={styles["product-gallery"]}>
       <div className={`row m-0 ${styles["row-product-gallery"]}`}>
@@ -91,7 +93,7 @@ const ProductGallery = (props) => {
           )}
           {props.sale !== 0 && (
             <span
-              className={`${styles.productLabel} ${styles.productLabelSale}`}
+              className={classSaleLabel}
             >
               Sale {props.sale} %
             </span>
