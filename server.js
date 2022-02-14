@@ -10,7 +10,7 @@ async function bootstrap(argument) {
         syncDatabase.syncDB();
         // syncDatabase.deleteDB()
         //syncDatabase.alterDB()
-        //syncDatabase.syncModel()
+        //syncDatabase.syncModel()     
         server.listen(PORT, () => {
             console.log("http App is running at port " + PORT);
         });
