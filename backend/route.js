@@ -12,11 +12,9 @@ const user = require('./controller/user')
 const productOption = require('./controller/productOption')
 const {upload} = require('./middleware/upload')
 const app = express()
-//var upload = multer()
 
-// const appBundle = fs.readFileSync("../frontend/public/index.html", "utf8");
 
-// app.use('/', express.static("frontend/public"));
+app.use('/', express.static("/frontend"));
 app.use(express.json());
 
 // app.get('/', function(req, res) {
@@ -94,5 +92,7 @@ app.post('/api/order', order.addOrder)
 app.post('/api/user/register', user.addUser)
 //api login user 
 app.post('/api/user/login', user.login)
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/frontend/build', 'index.html'));
+});
 module.exports = app
