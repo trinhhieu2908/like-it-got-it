@@ -10,12 +10,7 @@ async function bootstrap(argument) {
     syncDatabase.syncDB();
     // syncDatabase.deleteDB()
     //syncDatabase.alterDB()
-    //syncDatabase.syncModel()
-
-    if (process.env.NODE_ENV === "production") {
-        server.use(express.static("frontend/build"));
-    }
-    
+    //syncDatabase.syncModel()    
     server.listen(PORT, () => {
       console.log("http App is running at port " + PORT);
     });
