@@ -95,4 +95,8 @@ app.post('/api/user/register', user.addUser)
 //api login user 
 app.post('/api/user/login', user.login)
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+}
+
 module.exports = app
