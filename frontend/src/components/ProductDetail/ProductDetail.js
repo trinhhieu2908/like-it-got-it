@@ -10,6 +10,8 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 import styles from "./ProductDetail.module.css";
 
+const NotFound = React.lazy(() => import("../../pages/NotFound/NotFound"));
+
 const ProductDetail = () => {
   const params = useParams();
 
@@ -59,7 +61,7 @@ const ProductDetail = () => {
   }
 
   if (productDetailHasError) {
-    productContent = <p>{productDetailHasError}</p>;
+    productContent = <NotFound />;
   }
 
   if (!isLoadingProductDetail && !productDetailHasError) {

@@ -15,6 +15,8 @@ import ListProduct from "../../components/Products/ListProduct";
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
+const NotFound = React.lazy(() => import("../../pages/NotFound/NotFound"));
+
 const limitLoad = 12;
 
 const Shop = () => {
@@ -23,9 +25,7 @@ const Shop = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get("category");
-  const search = queryParams.get("search");
-
-  const NotFound = React.lazy(() => import("../../pages/NotFound/NotFound"));
+  const search = queryParams.get("search");  
 
   const listProductsData = useSelector(
     (state) => state.listProducts.productsData
