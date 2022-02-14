@@ -4,7 +4,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'duongthuychuong@gmail.com',
-    pass: 'rzziyokxapylysgy'
+    pass: 'kgaykwrkiwmseavv'
   }
 });
 
@@ -14,7 +14,7 @@ async function sendMail(emailCustomer, fullName) {
         from: 'duongthuychuong@gmail.com',
         to: emailCustomer,
         subject: 'HÓA ĐƠN LIKE IT GOT IT',
-        html: `<p>Cảm ơn ${fullName} đã tham gia chương trình thử nghiệm. Các sản phẩm trên Website hoàn toàn <b>ảo</b></p>`
+        html: `<p>Thank <b>${fullName}</b> for participating in the experience program. The products on the Website are completely virtual (not real). Therefore, no orders are created and shipped. Have a good day.</p>`
       };
       try {
         const info = await transporter.sendMail(mailOptions)
