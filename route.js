@@ -19,10 +19,6 @@ const app = express()
 // app.use('/', express.static("frontend/public"));
 app.use(express.json());
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/build'));
-}
-
 // app.get('/', function(req, res) {
 //     res.send(appBundle)
 // })
