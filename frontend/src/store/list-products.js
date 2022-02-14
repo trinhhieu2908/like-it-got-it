@@ -14,7 +14,6 @@ const listProductsSlice = createSlice({
       state.productsData = action.payload.productsData;
     },
     loadedMoreProduct(state, action) {
-      console.log(action.payload.productsMoreData)
       state.productsData = state.productsData.concat(action.payload.productsMoreData);
     },
     disableMoreButton(state) {
